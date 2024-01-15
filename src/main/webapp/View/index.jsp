@@ -1,5 +1,5 @@
-
-  <%@ include file="head.html" %>
+<h1><%=request.getAttribute("user") %></h1>
+  <%@ include file="head.jsp" %>
     <!-- Hero Start -->
     <div class="container-fluid py-5 mb-5 hero-header">
       <div class="container py-5">

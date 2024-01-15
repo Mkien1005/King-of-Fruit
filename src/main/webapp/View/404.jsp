@@ -3,7 +3,7 @@
             <div class="spinner-grow text-primary" role="status"></div>
         </div> -->
         <!-- Spinner End -->
-		<%@ include file="head.html" %>
+		<%@ include file="head.jsp" %>
 
         <!-- 404 Start -->
         <div class="container-fluid py-5">

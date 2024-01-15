@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,10 +65,10 @@
             >
           </div>
           <div class="top-link pe-2">
-            <a href="" class="text-white"
+            <a href="./login.jsp" class="text-white"
               ><small class="text-white mx-2">Sign In</small>/</a
             >
-            <a href="" class="text-white"
+            <a href="./register.jsp" class="text-white"
               ><small class="text-white ms-2">Sign Up</small></a
             >
           </div>
