@@ -315,8 +315,8 @@
                                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div> 
+                                    </div> 
                                     <div class="col-md-6 col-lg-6 col-xl-4">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
@@ -332,7 +332,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>  
                                     <div class="col-12">
                                         <div class="pagination d-flex justify-content-center mt-5">
                                             <a href="#" class="rounded">&laquo;</a>
