@@ -332,7 +332,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>  
                                     <div class="col-12">
                                         <div class="pagination d-flex justify-content-center mt-5">
                                             <a href="#" class="rounded">&laquo;</a>
