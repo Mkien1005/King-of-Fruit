@@ -65,7 +65,7 @@
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow()">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
@@ -102,7 +102,7 @@
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow()">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
@@ -122,7 +122,7 @@
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border">
                                             <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
@@ -138,8 +138,8 @@
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i>
+                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow()">
+                                        <i class="fa fa-times text-danger" ></i>
                                     </button>
                                 </td>
                             </tr>
@@ -172,15 +172,25 @@
                                 <h5 class="mb-0 ps-4 me-4">Total</h5>
                                 <p class="mb-0 pe-4">$99.00</p>
                             </div>
-                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button" >Proceed Checkout</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Cart Page End -->
-
+		<script type="text/javascript">
+		function deleteRow(){
+			document.addEventListener('click', function(event) {
+		        if (event.target.classList.contains('btn-md')) {
+		            var row = event.target.closest('tr');
+		            if (row) {
+		                row.remove();
+		            }
+		        }
+		    });
+		}
+		</script>
 <%@ include file="end.html" %>
     </body>
-
 </html>
