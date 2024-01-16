@@ -33,7 +33,7 @@
               <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active rounded">
                   <img
-                    src="../public/img/hero-img-1.png"
+                    src="../public/../public/img/hero-img-1.png"
                     class="img-fluid w-100 h-100 bg-secondary rounded"
                     alt="First slide"
                   />
@@ -43,7 +43,7 @@
                 </div>
                 <div class="carousel-item rounded">
                   <img
-                    src="../public/img/hero-img-2.jpg"
+                    src="../public/../public/img/hero-img-2.jpg"
                     class="img-fluid w-100 h-100 rounded"
                     alt="Second slide"
                   />
@@ -215,7 +215,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-5.jpg"
+                            src="../public/../public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -256,7 +256,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-5.jpg"
+                            src="../public/../public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -297,7 +297,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-2.jpg"
+                            src="../public/../public/img/fruite-item-2.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -338,7 +338,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-4.jpg"
+                            src="../public/../public/img/fruite-item-4.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -379,7 +379,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-3.jpg"
+                            src="../public/../public/img/fruite-item-3.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -420,7 +420,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-1.jpg"
+                            src="../public/../public/img/fruite-item-1.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -461,7 +461,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-2.jpg"
+                            src="../public/../public/img/fruite-item-2.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -502,7 +502,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-5.jpg"
+                            src="../public/../public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -551,7 +551,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-5.jpg"
+                            src="../public/../public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -592,7 +592,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-2.jpg"
+                            src="../public/../public/img/fruite-item-2.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -641,7 +641,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-1.jpg"
+                            src="../public/../public/img/fruite-item-1.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -682,7 +682,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-6.jpg"
+                            src="../public/../public/img/fruite-item-6.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -731,7 +731,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-5.jpg"
+                            src="../public/../public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -772,7 +772,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-4.jpg"
+                            src="../public/../public/img/fruite-item-4.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -821,7 +821,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-3.jpg"
+                            src="../public/../public/img/fruite-item-3.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -862,7 +862,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-2.jpg"
+                            src="../public/../public/img/fruite-item-2.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -904,7 +904,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/img/fruite-item-1.jpg"
+                            src="../public/../public/img/fruite-item-1.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -961,7 +961,7 @@
                 class="service-item bg-secondary rounded border border-secondary"
               >
                 <img
-                  src="../public/img/featur-1.jpg"
+                  src="../public/../public/img/featur-1.jpg"
                   class="img-fluid rounded-top w-100"
                   alt=""
                 />
@@ -980,7 +980,7 @@
             <a href="#">
               <div class="service-item bg-dark rounded border border-dark">
                 <img
-                  src="../public/img/featur-2.jpg"
+                  src="../public/../public/img/featur-2.jpg"
                   class="img-fluid rounded-top w-100"
                   alt=""
                 />
@@ -999,7 +999,7 @@
                 class="service-item bg-primary rounded border border-primary"
               >
                 <img
-                  src="../public/img/featur-3.jpg"
+                  src="../public/../public/img/featur-3.jpg"
                   class="img-fluid rounded-top w-100"
                   alt=""
                 />
@@ -1029,7 +1029,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-6.jpg"
+                src="../public/../public/img/vegetable-item-6.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1062,7 +1062,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-1.jpg"
+                src="../public/../public/img/vegetable-item-1.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1095,7 +1095,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-3.png"
+                src="../public/../public/img/vegetable-item-3.png"
                 class="img-fluid w-100 rounded-top bg-light"
                 alt=""
               />
@@ -1128,7 +1128,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-4.jpg"
+                src="../public/../public/img/vegetable-item-4.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1161,7 +1161,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-5.jpg"
+                src="../public/../public/img/vegetable-item-5.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1194,7 +1194,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-6.jpg"
+                src="../public/../public/img/vegetable-item-6.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1227,7 +1227,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-5.jpg"
+                src="../public/../public/img/vegetable-item-5.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1260,7 +1260,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/img/vegetable-item-6.jpg"
+                src="../public/../public/img/vegetable-item-6.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1315,7 +1315,7 @@
           <div class="col-lg-6">
             <div class="position-relative">
               <img
-                src="../public/img/baner-1.png"
+                src="../public/../public/img/baner-1.png"
                 class="img-fluid w-100 rounded"
                 alt=""
               />
@@ -1352,7 +1352,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/img/best-product-1.jpg"
+                    src="../public/../public/img/best-product-1.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1382,7 +1382,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/img/best-product-2.jpg"
+                    src="../public/../public/img/best-product-2.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1412,7 +1412,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/img/best-product-3.jpg"
+                    src="../public/../public/img/best-product-3.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1442,7 +1442,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/img/best-product-4.jpg"
+                    src="../public/../public/img/best-product-4.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1472,7 +1472,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/img/best-product-5.jpg"
+                    src="../public/../public/img/best-product-5.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1502,7 +1502,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/img/best-product-6.jpg"
+                    src="../public/../public/img/best-product-6.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1530,7 +1530,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/img/fruite-item-1.jpg"
+                src="../public/../public/img/fruite-item-1.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1556,7 +1556,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/img/fruite-item-2.jpg"
+                src="../public/../public/img/fruite-item-2.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1582,7 +1582,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/img/fruite-item-3.jpg"
+                src="../public/../public/img/fruite-item-3.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1608,7 +1608,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/img/fruite-item-4.jpg"
+                src="../public/../public/img/fruite-item-4.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1698,7 +1698,7 @@
               <div class="d-flex align-items-center flex-nowrap">
                 <div class="bg-secondary rounded">
                   <img
-                    src="../public/img/testimonial-1.jpg"
+                    src="../public/../public/img/testimonial-1.jpg"
                     class="img-fluid rounded"
                     style="width: 100px; height: 100px"
                     alt=""
@@ -1733,7 +1733,7 @@
               <div class="d-flex align-items-center flex-nowrap">
                 <div class="bg-secondary rounded">
                   <img
-                    src="../public/img/testimonial-1.jpg"
+                    src="../public/../public/img/testimonial-1.jpg"
                     class="img-fluid rounded"
                     style="width: 100px; height: 100px"
                     alt=""
