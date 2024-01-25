@@ -64,7 +64,15 @@
               ><a href="#" class="text-white">Email@Example.com</a></small
             >
           </div>
-          <div class="top-link pe-2">
+          <%
+          // Lấy phiên HttpSession từ request
+          // Kiểm tra xem phiên HttpSession có tồn tại không
+          if (session == null || session.getAttribute("username") == null) {
+              // Phiên HttpSession không tồn tại hoặc không có username được lưu trong phiên
+              // Hiển thị nút "Sign In" và "Sign Up"
+              
+      %>
+      	  <div class="top-link pe-2">
             <a href="./login.jsp" class="text-white"
               ><small class="text-white mx-2">Sign In</small>/</a
             >
@@ -72,6 +80,20 @@
               ><small class="text-white ms-2">Sign Up</small></a
             >
           </div>
+      <%
+          } else {
+              // Phiên HttpSession tồn tại và có username được lưu trong phiên
+              // Hiển thị thông tin của người dùng (hoặc các thao tác khác)
+      %>
+      		<small class="text-white mx-2">
+              <p>Welcome, <%= session.getAttribute("username") %>! (<a href="./login.jsp" class="text-white"
+              ><small class="text-white mx-2">Sign Out</small>/</a
+            >)</p>
+            </small>
+      <%
+          }
+      %>
+          
         </div>
       </div>
       <div class="container px-0">
