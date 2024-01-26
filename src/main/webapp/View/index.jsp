@@ -1,5 +1,6 @@
-<h1><%=request.getAttribute("user") %></h1>
   <%@ include file="head.jsp" %>
+  <%@ page import="bean.Products" %>
+  <%@ page import="java.util.List" %>
     <!-- Hero Start -->
     <div class="container-fluid py-5 mb-5 hero-header">
       <div class="container py-5">
@@ -33,7 +34,7 @@
               <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active rounded">
                   <img
-                    src="../public/../public/img/hero-img-1.png"
+                    src="public/img/hero-img-1.png"
                     class="img-fluid w-100 h-100 bg-secondary rounded"
                     alt="First slide"
                   />
@@ -43,7 +44,7 @@
                 </div>
                 <div class="carousel-item rounded">
                   <img
-                    src="../public/../public/img/hero-img-2.jpg"
+                    src="public/img/hero-img-2.jpg"
                     class="img-fluid w-100 h-100 rounded"
                     alt="Second slide"
                   />
@@ -210,12 +211,16 @@
             <div id="tab-1" class="tab-pane fade show p-0 active">
               <div class="row g-4">
                 <div class="col-lg-12">
-                  <div class="row g-4">
-                    <div class="col-md-6 col-lg-4 col-xl-3">
+                  <div class="row g-4" id="productList">
+                   <% 
+            List<Products> productList = (List<Products>)request.getAttribute("productList");
+            for(Products product : productList) {
+        %>
+                   <div class="col-md-6 col-lg-4 col-xl-3" >
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-5.jpg"
+                            src="public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -251,294 +256,8 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="../public/../public/img/fruite-item-5.jpg"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Fruits
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <h4>Grapes</h4>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit sed do eiusmod te incididunt
-                          </p>
-                          <div
-                            class="d-flex justify-content-between flex-lg-wrap"
-                          >
-                            <p class="text-dark fs-5 fw-bold mb-0">
-                              $4.99 / kg
-                            </p>
-                            <a
-                              href="#"
-                              class="btn border border-secondary rounded-pill px-3 text-primary"
-                              ><i
-                                class="fa fa-shopping-bag me-2 text-primary"
-                              ></i>
-                              Add to cart</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="../public/../public/img/fruite-item-2.jpg"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Fruits
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <h4>Raspberries</h4>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit sed do eiusmod te incididunt
-                          </p>
-                          <div
-                            class="d-flex justify-content-between flex-lg-wrap"
-                          >
-                            <p class="text-dark fs-5 fw-bold mb-0">
-                              $4.99 / kg
-                            </p>
-                            <a
-                              href="#"
-                              class="btn border border-secondary rounded-pill px-3 text-primary"
-                              ><i
-                                class="fa fa-shopping-bag me-2 text-primary"
-                              ></i>
-                              Add to cart</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="../public/../public/img/fruite-item-4.jpg"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Fruits
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <h4>Apricots</h4>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit sed do eiusmod te incididunt
-                          </p>
-                          <div
-                            class="d-flex justify-content-between flex-lg-wrap"
-                          >
-                            <p class="text-dark fs-5 fw-bold mb-0">
-                              $4.99 / kg
-                            </p>
-                            <a
-                              href="#"
-                              class="btn border border-secondary rounded-pill px-3 text-primary"
-                              ><i
-                                class="fa fa-shopping-bag me-2 text-primary"
-                              ></i>
-                              Add to cart</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="../public/../public/img/fruite-item-3.jpg"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Fruits
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <h4>Banana</h4>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit sed do eiusmod te incididunt
-                          </p>
-                          <div
-                            class="d-flex justify-content-between flex-lg-wrap"
-                          >
-                            <p class="text-dark fs-5 fw-bold mb-0">
-                              $4.99 / kg
-                            </p>
-                            <a
-                              href="#"
-                              class="btn border border-secondary rounded-pill px-3 text-primary"
-                              ><i
-                                class="fa fa-shopping-bag me-2 text-primary"
-                              ></i>
-                              Add to cart</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="../public/../public/img/fruite-item-1.jpg"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Fruits
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <h4>Oranges</h4>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit sed do eiusmod te incididunt
-                          </p>
-                          <div
-                            class="d-flex justify-content-between flex-lg-wrap"
-                          >
-                            <p class="text-dark fs-5 fw-bold mb-0">
-                              $4.99 / kg
-                            </p>
-                            <a
-                              href="#"
-                              class="btn border border-secondary rounded-pill px-3 text-primary"
-                              ><i
-                                class="fa fa-shopping-bag me-2 text-primary"
-                              ></i>
-                              Add to cart</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="../public/../public/img/fruite-item-2.jpg"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Fruits
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <h4>Raspberries</h4>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit sed do eiusmod te incididunt
-                          </p>
-                          <div
-                            class="d-flex justify-content-between flex-lg-wrap"
-                          >
-                            <p class="text-dark fs-5 fw-bold mb-0">
-                              $4.99 / kg
-                            </p>
-                            <a
-                              href="#"
-                              class="btn border border-secondary rounded-pill px-3 text-primary"
-                              ><i
-                                class="fa fa-shopping-bag me-2 text-primary"
-                              ></i>
-                              Add to cart</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                      <div class="rounded position-relative fruite-item">
-                        <div class="fruite-img">
-                          <img
-                            src="../public/../public/img/fruite-item-5.jpg"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                          />
-                        </div>
-                        <div
-                          class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                          style="top: 10px; left: 10px"
-                        >
-                          Fruits
-                        </div>
-                        <div
-                          class="p-4 border border-secondary border-top-0 rounded-bottom"
-                        >
-                          <h4>Grapes</h4>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit sed do eiusmod te incididunt
-                          </p>
-                          <div
-                            class="d-flex justify-content-between flex-lg-wrap"
-                          >
-                            <p class="text-dark fs-5 fw-bold mb-0">
-                              $4.99 / kg
-                            </p>
-                            <a
-                              href="#"
-                              class="btn border border-secondary rounded-pill px-3 text-primary"
-                              ><i
-                                class="fa fa-shopping-bag me-2 text-primary"
-                              ></i>
-                              Add to cart</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    </div>                
+<% } %>
                   </div>
                 </div>
               </div>
@@ -551,7 +270,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-5.jpg"
+                            src="public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -592,7 +311,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-2.jpg"
+                            src="public/img/fruite-item-2.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -641,7 +360,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-1.jpg"
+                            src="public/img/fruite-item-1.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -682,7 +401,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-6.jpg"
+                            src="public/img/fruite-item-6.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -731,7 +450,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-5.jpg"
+                            src="public/img/fruite-item-5.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -772,7 +491,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-4.jpg"
+                            src="public/img/fruite-item-4.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -821,7 +540,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-3.jpg"
+                            src="public/img/fruite-item-3.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -862,7 +581,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-2.jpg"
+                            src="public/img/fruite-item-2.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -904,7 +623,7 @@
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
                           <img
-                            src="../public/../public/img/fruite-item-1.jpg"
+                            src="public/img/fruite-item-1.jpg"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                           />
@@ -961,7 +680,7 @@
                 class="service-item bg-secondary rounded border border-secondary"
               >
                 <img
-                  src="../public/../public/img/featur-1.jpg"
+                  src="public/img/featur-1.jpg"
                   class="img-fluid rounded-top w-100"
                   alt=""
                 />
@@ -980,7 +699,7 @@
             <a href="#">
               <div class="service-item bg-dark rounded border border-dark">
                 <img
-                  src="../public/../public/img/featur-2.jpg"
+                  src="public/img/featur-2.jpg"
                   class="img-fluid rounded-top w-100"
                   alt=""
                 />
@@ -999,7 +718,7 @@
                 class="service-item bg-primary rounded border border-primary"
               >
                 <img
-                  src="../public/../public/img/featur-3.jpg"
+                  src="public/img/featur-3.jpg"
                   class="img-fluid rounded-top w-100"
                   alt=""
                 />
@@ -1029,7 +748,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-6.jpg"
+                src="public/img/vegetable-item-6.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1062,7 +781,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-1.jpg"
+                src="public/img/vegetable-item-1.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1095,7 +814,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-3.png"
+                src="public/img/vegetable-item-3.png"
                 class="img-fluid w-100 rounded-top bg-light"
                 alt=""
               />
@@ -1128,7 +847,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-4.jpg"
+                src="public/img/vegetable-item-4.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1161,7 +880,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-5.jpg"
+                src="public/img/vegetable-item-5.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1194,7 +913,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-6.jpg"
+                src="public/img/vegetable-item-6.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1227,7 +946,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-5.jpg"
+                src="public/img/vegetable-item-5.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1260,7 +979,7 @@
           >
             <div class="vesitable-img">
               <img
-                src="../public/../public/img/vegetable-item-6.jpg"
+                src="public/img/vegetable-item-6.jpg"
                 class="img-fluid w-100 rounded-top"
                 alt=""
               />
@@ -1315,7 +1034,7 @@
           <div class="col-lg-6">
             <div class="position-relative">
               <img
-                src="../public/../public/img/baner-1.png"
+                src="public/img/baner-1.png"
                 class="img-fluid w-100 rounded"
                 alt=""
               />
@@ -1352,7 +1071,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/../public/img/best-product-1.jpg"
+                    src="public/img/best-product-1.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1382,7 +1101,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/../public/img/best-product-2.jpg"
+                    src="public/img/best-product-2.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1412,7 +1131,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/../public/img/best-product-3.jpg"
+                    src="public/img/best-product-3.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1442,7 +1161,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/../public/img/best-product-4.jpg"
+                    src="public/img/best-product-4.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1472,7 +1191,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/../public/img/best-product-5.jpg"
+                    src="public/img/best-product-5.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1502,7 +1221,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <img
-                    src="../public/../public/img/best-product-6.jpg"
+                    src="public/img/best-product-6.jpg"
                     class="img-fluid rounded-circle w-100"
                     alt=""
                   />
@@ -1530,7 +1249,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/../public/img/fruite-item-1.jpg"
+                src="public/img/fruite-item-1.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1556,7 +1275,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/../public/img/fruite-item-2.jpg"
+                src="public/img/fruite-item-2.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1582,7 +1301,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/../public/img/fruite-item-3.jpg"
+                src="public/img/fruite-item-3.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1608,7 +1327,7 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="text-center">
               <img
-                src="../public/../public/img/fruite-item-4.jpg"
+                src="public/img/fruite-item-4.jpg"
                 class="img-fluid rounded"
                 alt=""
               />
@@ -1698,7 +1417,7 @@
               <div class="d-flex align-items-center flex-nowrap">
                 <div class="bg-secondary rounded">
                   <img
-                    src="../public/../public/img/testimonial-1.jpg"
+                    src="public/img/testimonial-1.jpg"
                     class="img-fluid rounded"
                     style="width: 100px; height: 100px"
                     alt=""
@@ -1733,7 +1452,7 @@
               <div class="d-flex align-items-center flex-nowrap">
                 <div class="bg-secondary rounded">
                   <img
-                    src="../public/../public/img/testimonial-1.jpg"
+                    src="public/img/testimonial-1.jpg"
                     class="img-fluid rounded"
                     style="width: 100px; height: 100px"
                     alt=""
@@ -1768,7 +1487,7 @@
               <div class="d-flex align-items-center flex-nowrap">
                 <div class="bg-secondary rounded">
                   <img
-                    src="../public/img/testimonial-1.jpg"
+                    src="public/img/testimonial-1.jpg"
                     class="img-fluid rounded"
                     style="width: 100px; height: 100px"
                     alt=""

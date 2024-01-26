@@ -28,19 +28,90 @@
     />
 
     <!-- Libraries Stylesheet -->
-    <link href="../public/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-    <link href="../public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="public/lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+    <link href="public/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../public/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="public/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Template Stylesheet -->
-    <link href="../public/css/style.css" rel="stylesheet" />
+    <link href="public/css/style.css" rel="stylesheet" />
     
     <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="../public/img/icon.png">
+    <link rel="icon" type="image/x-icon" href="public/img/icon.png">
+<!--       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '../getProduct',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                	console.log(data);
+                	function sendGetRequestToServlet() {
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                // Xử lý phản hồi từ servlet
+                                console.log(this.responseText);
+                            }
+                        };
+                        xhttp.open("GET", "../getProduct", true);
+                        xhttp.send();
+                    }
+
+                    // Gọi hàm sendGetRequestToServlet() khi trang được load
+                    window.onload = function() {
+                        sendGetRequestToServlet();
+                    };
+                    // Xử lý dữ liệu từ servlet
+                    data.forEach(function(product) {
+                    	
+                        $('#productList').append('<div class="rounded position-relative fruite-item">'+
+                        '<div class="fruite-img">'+
+                                '<img'+
+                                  'src="../public/img/'+product.productImage+'"'+
+                                  'class="img-fluid w-100 rounded-top"'+
+                                  'alt=""'+
+                                '/>'+
+                              '</div>'+
+                              '<div'+
+                                'class="text-white bg-secondary px-3 py-1 rounded position-absolute"'+
+                                'style="top: 10px; left: 10px"'+
+                              '>'
+                                + product.type +
+                              '</div>'+
+                              '<div'+
+                                'class="p-4 border border-secondary border-top-0 rounded-bottom"'+
+                              '>'+
+                                '<h4>'+product.productName+'</h4>'+
+                                '<p>'+product.description+
+                                '</p>'+
+                                '<div'+
+                                  'class="d-flex justify-content-between flex-lg-wrap"'+
+                                '>'+
+                                  '<p class="text-dark fs-5 fw-bold mb-0">'+
+                                    '$'+product.cost +'/ kg'+
+                                  '</p>'+
+                                  '<a'+
+                                    'href="#"'+
+                                    'class="btn border border-secondary rounded-pill px-3 text-primary"'+
+                                    '><i'+
+                                      'class="fa fa-shopping-bag me-2 text-primary"'+
+                                    '></i>'+
+                                    'Add to cart</a'+
+                                  '>'+
+                                '</div>'+
+                              '</div>'+
+                            '</div>');
+                    });
+                }
+            });
+        });
+    </script> -->
   </head>
- <body> -->
+ <body>
+
     <!-- Spinner Start -->
     <div
       id="spinner"
@@ -124,15 +195,15 @@
                   >Pages</a
                 >
                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                  <a href="./cart.jsp" class="dropdown-item">Cart</a>
-                  <a href="./chackout.jsp" class="dropdown-item">Chackout</a>
-                  <a href="./testimonial.jsp" class="dropdown-item"
+                  <a href="cart.jsp" class="dropdown-item">Cart</a>
+                  <a href="chackout.jsp" class="dropdown-item">Chackout</a>
+                  <a href="testimonial.jsp" class="dropdown-item"
                     >Testimonial</a
                   >
-                  <a href="./404.jsp" class="dropdown-item">404 Page</a>
+                  <a href="404.jsp" class="dropdown-item">404 Page</a>
                 </div>
               </div>
-              <a href="./contact.jsp" class="nav-item nav-link">Contact</a>
+              <a href="contact.jsp" class="nav-item nav-link">Contact</a>
             </div>
             <div class="d-flex m-3 me-0">
               <button
