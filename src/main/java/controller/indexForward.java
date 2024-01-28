@@ -18,10 +18,11 @@ public class indexForward extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		RequestDispatcher rDispatcher = request.getRequestDispatcher("/View/test.html");
-//		rDispatcher.forward(request, response);
-		String newPath = "/re-java-web/View/index.jsp";
-        response.sendRedirect(newPath);
+		
+		RequestDispatcher rDispatcher = request.getRequestDispatcher("View/cart.jsp");
+		rDispatcher.forward(request, response);
+//		String newPath = "/re-java-web/View/index.jsp";
+//        response.sendRedirect(newPath);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

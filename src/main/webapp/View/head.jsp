@@ -43,7 +43,7 @@
     <script>
         $(document).ready(function() {
             $.ajax({
-                url: '../getProduct',
+                url: '.View/getProduct',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -56,7 +56,7 @@
                                 console.log(this.responseText);
                             }
                         };
-                        xhttp.open("GET", "../getProduct", true);
+                        xhttp.open("GET", ".View/getProduct", true);
                         xhttp.send();
                     }
 
@@ -70,7 +70,7 @@
                         $('#productList').append('<div class="rounded position-relative fruite-item">'+
                         '<div class="fruite-img">'+
                                 '<img'+
-                                  'src="../public/img/'+product.productImage+'"'+
+                                  'src=".View/public/img/'+product.productImage+'"'+
                                   'class="img-fluid w-100 rounded-top"'+
                                   'alt=""'+
                                 '/>'+
@@ -144,10 +144,10 @@
               
       %>
       	  <div class="top-link pe-2">
-            <a href="./login.jsp" class="text-white"
+            <a href="View/login.jsp" class="text-white"
               ><small class="text-white mx-2">Sign In</small>/</a
             >
-            <a href="./register.jsp" class="text-white"
+            <a href="View/register.jsp" class="text-white"
               ><small class="text-white ms-2">Sign Up</small></a
             >
           </div>
@@ -157,7 +157,7 @@
               // Hiển thị thông tin của người dùng (hoặc các thao tác khác)
       %>
       		<small class="text-white mx-2">
-              <p>Welcome, <%= session.getAttribute("username") %>! (<a href="./login.jsp" class="text-white"
+              <p>Welcome, <%= session.getAttribute("username") %>! (<a href="View/login.jsp" class="text-white"
               ><small class="text-white mx-2">Sign Out</small>/</a
             >)</p>
             </small>
@@ -169,7 +169,7 @@
       </div>
       <div class="container px-0">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-          <a href="index.jsp" class="navbar-brand"
+          <a href="getProduct" class="navbar-brand"
             ><h1 class="text-primary display-6">Fruitables</h1></a
           >
           <button
@@ -182,9 +182,9 @@
           </button>
           <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
-              <a href="./index.jsp" class="nav-item nav-link active">Home</a>
-              <a href="./shop.jsp" class="nav-item nav-link">Shop</a>
-              <a href="./shop-detail.jsp" class="nav-item nav-link"
+              <a href="getProduct" class="nav-item nav-link active">Home</a>
+              <a href="View/shop.jsp" class="nav-item nav-link">Shop</a>
+              <a href="View/shop-detail.jsp" class="nav-item nav-link"
                 >Shop Detail</a
               >
               <div class="nav-item dropdown">
@@ -213,7 +213,7 @@
               >
                 <i class="fas fa-search text-primary"></i>
               </button>
-              <a href="cart.jsp" class="position-relative me-4 my-auto">
+              <a href="indexForward" class="position-relative me-4 my-auto">
                 <i class="fa fa-shopping-bag fa-2x"></i>
                 <span
                   class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
