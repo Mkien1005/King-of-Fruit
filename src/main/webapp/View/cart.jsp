@@ -5,7 +5,8 @@
         <!-- Spinner End -->
 
 		<%@ include file="head.jsp" %>
-
+  		<%@ page import="bean.ProductWithQuantity" %>
+  		<%@ page import="java.util.List" %>
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
             <h1 class="text-center text-white display-6">Cart</h1>
@@ -34,17 +35,30 @@
                           </tr>
                         </thead>
                         <tbody>
+                        <%-- <% 
+            List<Products> MeatList = (List<Products>)request.getAttribute("productWithQuantityList");
+            for(Products meat : MeatList) {
+        %> --%>
+        <%
+        	List<ProductWithQuantity> productss = (List<ProductWithQuantity>) request.getAttribute("productWithQuantityList");
+        	if(productss==null){
+        		%>
+        		<h1>No products in your cart now!</h1>
+        		<%
+        	}else{
+        	for(ProductWithQuantity products : productss){
+        %>
                             <tr>
                                 <th scope="row">
                                     <div class="d-flex align-items-center">
-                                        <img src="../public/img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                        <img src="public/img/<%=products.getProduct().getImg_prod()%>" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                                     </div>
                                 </th>
                                 <td>
-                                    <p class="mb-0 mt-4">Big Banana</p>
+                                    <p class="mb-0 mt-4"><%=products.getProduct().getName_prod() %></p>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
+                                    <p class="mb-0 mt-4"><%=products.getProduct().getCost() %> $</p>
                                 </td>
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
@@ -71,78 +85,7 @@
                                 </td>
                             
                             </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="../public/img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Potatoes</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow()">
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="../public/img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Awesome Brocoli</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow()">
-                                        <i class="fa fa-times text-danger" ></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <%}} %>
                         </tbody>
                     </table>
                 </div>

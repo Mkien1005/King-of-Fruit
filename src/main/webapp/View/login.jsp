@@ -121,7 +121,7 @@
 						showBootstrapToast("Đăng nhập thành công!");
 						// Đăng nhập thành công, chuyển hướng hoặc thực hiện hành động khác
 						setTimeout(function() {
-		                    window.location.href = "../getProduct";
+		                    window.location.href = "../indexForward";
 		                }, 2000);					
 						} else {
 						// Đăng nhập không thành công, hiển thị thông báo lỗi
