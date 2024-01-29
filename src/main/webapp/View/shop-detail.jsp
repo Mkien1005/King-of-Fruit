@@ -5,6 +5,8 @@
         <!-- Spinner End -->
 
 		<%@ include file="head.jsp" %>
+		<%@ page import="bean.Products" %>
+  		<%@ page import="java.util.List" %>
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
             <h1 class="text-center text-white display-6">Shop Detail</h1>
@@ -16,7 +18,9 @@
         </div>
         <!-- Single Page Header End -->
 
-
+<% 
+Products product = (Products) request.getAttribute("product"); 
+%>
         <!-- Single Product Start -->
         <div class="container-fluid py-5 mt-5">
             <div class="container py-5">
@@ -26,14 +30,14 @@
                             <div class="col-lg-6">
                                 <div class="border rounded">
                                     <a href="#">
-                                        <img src="../public/img/single-item.jpg" class="img-fluid rounded" alt="Image">
+                                        <img src="public/img/<%=product.getImg_prod() %>" class="img-fluid rounded" alt="Image">
                                     </a>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <h4 class="fw-bold mb-3">Brocoli</h4>
-                                <p class="mb-3">Category: Vegetables</p>
-                                <h5 class="fw-bold mb-3">3,35 $</h5>
+                                <h4 class="fw-bold mb-3"><%=product.getName_prod() %></h4>
+                                <p class="mb-3">Category: <%=product.getType() %></p>
+                                <h5 class="fw-bold mb-3"><%=product.getCost() %> $</h5>
                                 <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>
@@ -104,7 +108,7 @@
                                                     </div>
                                                     <div class="row text-center align-items-center justify-content-center py-2">
                                                         <div class="col-6">
-                                                            <p class="mb-0">Сheck</p>
+                                                            <p class="mb-0">Check</p>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="mb-0">Healthy</p>

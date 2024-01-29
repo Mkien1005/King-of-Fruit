@@ -235,7 +235,7 @@
                         <div
                           class="p-4 border border-secondary border-top-0 rounded-bottom"
                         >
-                          <h4><%=product.getName_prod() %></h4>
+                          <a href="Detail_Product?id=<%=product.getId()%>"><h4><%=product.getName_prod() %></h4></a>
                           <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit sed do eiusmod te incididunt
@@ -291,7 +291,7 @@
                         <div
                           class="p-4 border border-secondary border-top-0 rounded-bottom"
                         >
-                          <h4><%=vegetable.getName_prod() %></h4>
+                          <a href="Detail_Product?id=<%=vegetable.getId()%>"><h4><%=vegetable.getName_prod() %></h4></a>
                           <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit sed do eiusmod te incididunt
@@ -347,7 +347,7 @@
                         <div
                           class="p-4 border border-secondary border-top-0 rounded-bottom"
                         >
-                          <h4><%=fruit.getName_prod() %></h4>
+                          <a href="Detail_Product?id=<%=fruit.getId()%>"><h4><%=fruit.getName_prod() %></h4></a>
                           <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit sed do eiusmod te incididunt
@@ -402,7 +402,7 @@
                         <div
                           class="p-4 border border-secondary border-top-0 rounded-bottom"
                         >
-                          <h4><%=Bread.getName_prod() %></h4>
+                          <a href="Detail_Product?id=<%=Bread.getId()%>"><h4><%=Bread.getName_prod() %></h4></a>
                           <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit sed do eiusmod te incididunt
@@ -457,7 +457,7 @@
                         <div
                           class="p-4 border border-secondary border-top-0 rounded-bottom"
                         >
-                          <h4><%=meat.getName_prod() %></h4>
+                          <a href="Detail_Product?id=<%=meat.getId()%>"><h4><%=meat.getName_prod() %></h4></a>
                           <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit sed do eiusmod te incididunt
