@@ -219,12 +219,13 @@
                    <div class="col-md-6 col-lg-4 col-xl-3" >
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
-                          <img
+                          
+                          <a href="Detail_Product?id=<%=product.getId()%>"><img
                             src="public/img/<%=product.getImg_prod() %>"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                             style="height: 244.8px"
-                          />
+                          /></a>
                         </div>
                         <div
                           class="text-white bg-secondary px-3 py-1 rounded position-absolute"
@@ -275,12 +276,13 @@
                    <div class="col-md-6 col-lg-4 col-xl-3" >
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
-                          <img
+                          
+                          <a href="Detail_Product?id=<%=vegetable.getId()%>"><img
                             src="public/img/<%=vegetable.getImg_prod() %>"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                             style="height: 244.8px"
-                          />
+                          /></a>
                         </div>
                         <div
                           class="text-white bg-secondary px-3 py-1 rounded position-absolute"
@@ -331,12 +333,14 @@
                    <div class="col-md-6 col-lg-4 col-xl-3" >
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
-                          <img
-                            src="public/img/<%=fruit.getImg_prod() %>"
-                            class="img-fluid w-100 rounded-top"
-                            alt=""
-                            style="height: 244.8px"
+                        	<a href="Detail_Product?id=<%=fruit.getId()%>">
+                          	<img
+                           		src="public/img/<%=fruit.getImg_prod() %>"
+                            	class="img-fluid w-100 rounded-top"
+                            	alt=""
+                            	style="height: 244.8px"
                           />
+                          </a>
                         </div>
                         <div
                           class="text-white bg-secondary px-3 py-1 rounded position-absolute"
@@ -386,12 +390,13 @@
                    <div class="col-md-6 col-lg-4 col-xl-3" >
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
+                        <a href="Detail_Product?id=<%=Bread.getId()%>">
                           <img
                             src="public/img/<%=Bread.getImg_prod() %>"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                             style="height: 244.8px"
-                          />
+                          /></a>
                         </div>
                         <div
                           class="text-white bg-secondary px-3 py-1 rounded position-absolute"
@@ -441,12 +446,13 @@
                    <div class="col-md-6 col-lg-4 col-xl-3" >
                       <div class="rounded position-relative fruite-item">
                         <div class="fruite-img">
+                        <a href="Detail_Product?id=<%=meat.getId()%>">
                           <img
                             src="public/img/<%=meat.getImg_prod() %>"
                             class="img-fluid w-100 rounded-top"
                             alt=""
                             style="height: 244.8px"
-                          />
+                          /></a>
                         </div>
                         <div
                           class="text-white bg-secondary px-3 py-1 rounded position-absolute"
