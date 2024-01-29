@@ -411,7 +411,7 @@
                             class="d-flex justify-content-between flex-lg-wrap"
                           >
                             <p class="text-dark fs-5 fw-bold mb-0">
-                              $<%=Bread.getCost() %>/ piece
+                              $<%=Bread.getCost() %>/piece
                             </p>
                             <a
                               href="#"

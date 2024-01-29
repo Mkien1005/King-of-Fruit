@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="getProduct"> </a>
+	<a href="indexForward"> </a>
 </body>
 </html>

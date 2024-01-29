@@ -128,7 +128,7 @@
           <div class="top-info ps-2">
             <small class="me-3"
               ><i class="fas fa-map-marker-alt me-2 text-secondary"></i>
-              <a href="#" class="text-white">123 Street, New York</a></small
+              <a href="https://maps.app.goo.gl/9qs1wayHcHpCBxGr9" target="_blank" class="text-white">Z115 Street Quyet Thang, Thai Nguyen</a></small
             >
             <small class="me-3"
               ><i class="fas fa-envelope me-2 text-secondary"></i
@@ -169,7 +169,7 @@
       </div>
       <div class="container px-0">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-          <a href="getProduct" class="navbar-brand"
+          <a href="indexForward" class="navbar-brand"
             ><h1 class="text-primary display-6">Fruitables</h1></a
           >
           <button
@@ -182,9 +182,9 @@
           </button>
           <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
-              <a href="getProduct" class="nav-item nav-link active">Home</a>
-              <a href="View/shop.jsp" class="nav-item nav-link">Shop</a>
-              <a href="View/shop-detail.jsp" class="nav-item nav-link"
+              <a href="indexForward" class="nav-item nav-link active">Home</a>
+              <a href="shopDirector" class="nav-item nav-link">Shop</a>
+              <a href="Detail_Product" class="nav-item nav-link"
                 >Shop Detail</a
               >
               <div class="nav-item dropdown">
@@ -195,7 +195,7 @@
                   >Pages</a
                 >
                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                  <a href="cart.jsp" class="dropdown-item">Cart</a>
+                  <a href="CartDirector" class="dropdown-item">Cart</a>
                   <a href="chackout.jsp" class="dropdown-item">Chackout</a>
                   <a href="testimonial.jsp" class="dropdown-item"
                     >Testimonial</a
@@ -213,7 +213,7 @@
               >
                 <i class="fas fa-search text-primary"></i>
               </button>
-              <a href="indexForward" class="position-relative me-4 my-auto">
+              <a href="CartDirector" class="position-relative me-4 my-auto">
                 <i class="fa fa-shopping-bag fa-2x"></i>
                 <span
                   class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
