@@ -55,24 +55,21 @@ public class Login extends HttpServlet {
         response.getWriter().write(variableValue);
 	}
 	private boolean kiemTraDangNhap(String username, String password) {
-        // Kiểm tra thông tin đăng nhập ở đây, trả về true nếu hợp lệ, ngược lại trả về false
-		Connection connection = dbConnection.createConnection();
-		String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, username);
-            statement.setString(2, password);
+	    try (Connection connection = dbConnection.createConnection();
+	         PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?")) {
 
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if(resultSet!=null) {
-                	return true;
-                }else {
-                	return false;
-                }
-            }
-        } catch (SQLException e) {
-        e.printStackTrace();
-    }
-        return false;
-    }
+	        statement.setString(1, username);
+	        statement.setString(2, password);
+
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            return resultSet.next(); // Trả về true nếu có ít nhất một bản ghi khớp
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+
 
 }
