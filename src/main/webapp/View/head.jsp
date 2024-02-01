@@ -157,9 +157,10 @@
               // Hiển thị thông tin của người dùng (hoặc các thao tác khác)
       %>
       		<small class="text-white mx-2">
-              <p>Welcome, <%= session.getAttribute("username") %>! (<a href="View/login.jsp" class="text-white"
-              ><small class="text-white mx-2">Sign Out</small>/</a
-            >)</p>
+              <form action="Logout" method="POST"><p>Welcome, <%= session.getAttribute("username") %>! (<a href="View/login.jsp" class="text-white"
+              >
+              <small class="text-white mx-2">Sign Out</small></a
+            >)</p></form>
             </small>
       <%
           }

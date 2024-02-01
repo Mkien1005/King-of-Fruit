@@ -30,4 +30,51 @@ public class UserQuery {
 		}
 		return false;
 	}
+	    // Hàm để lấy giá trị id từ username
+	    public static int getUserIdByUsername(String username) {
+	        int userId = -1; // Giá trị mặc định nếu không tìm thấy
+
+	        Connection connection = null;
+	        PreparedStatement preparedStatement = null;
+	        ResultSet resultSet = null;
+
+	        try {
+	            // Tạo kết nối đến cơ sở dữ liệu
+	            connection = db.dbConnection.createConnection();
+
+	            // Chuẩn bị câu truy vấn SQL
+	            String sql = "SELECT id FROM users WHERE username = ?";
+	            preparedStatement = connection.prepareStatement(sql);
+	            preparedStatement.setString(1, username);
+
+	            // Thực hiện truy vấn
+	            resultSet = preparedStatement.executeQuery();
+
+	            // Xử lý kết quả truy vấn
+	            if (resultSet.next()) {
+	                // Nếu có kết quả, lấy giá trị id từ cột "id"
+	                userId = resultSet.getInt("id");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } finally {
+	            // Đóng tất cả các tài nguyên
+	            try {
+	                if (resultSet != null) {
+	                    resultSet.close();
+	                }
+	                if (preparedStatement != null) {
+	                    preparedStatement.close();
+	                }
+	                if (connection != null) {
+	                    connection.close();
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+
+	        return userId;
+	    }
 }

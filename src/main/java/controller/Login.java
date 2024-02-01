@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +19,7 @@ import db.dbConnection;
 
 @WebServlet("/controller/Login")
 public class Login extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     public Login() {
@@ -30,46 +32,51 @@ public class Login extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException 
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
-
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
-        // Kiểm tra thông tin đăng nhập ở đây
+        System.out.println(username);
+        System.out.println(password);
+        
         boolean dangNhapThanhCong = kiemTraDangNhap(username, password);
-        String variableValue;
+
         if (dangNhapThanhCong) {
-        	HttpSession session = request.getSession();
-            session.setAttribute("username", username); // Lưu tên đăng nhập vào phiên
-        	variableValue = "success";
+            HttpSession session = request.getSession(); // Tạo session nếu chưa tồn tại
+            int id_user = dao.UserQuery.getUserIdByUsername(username);
+            session.setAttribute("username", username);
+            session.setAttribute("id_user", id_user);
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("success");
         } else {
-        	variableValue = "failure";
-        }	
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(variableValue);
-	}
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("failure");
+        }
+//        RequestDispatcher rd = request.getRequestDispatcher("/View/test.jsp");
+//        rd.forward(request, response);
+    }
+
 	private boolean kiemTraDangNhap(String username, String password) {
-	    try (Connection connection = dbConnection.createConnection();
-	         PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?")) {
+        try (Connection connection = dbConnection.createConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?")) {
 
-	        statement.setString(1, username);
-	        statement.setString(2, password);
+            statement.setString(1, username);
+            statement.setString(2, password);
 
-	        try (ResultSet resultSet = statement.executeQuery()) {
-	            return resultSet.next(); // Trả về true nếu có ít nhất một bản ghi khớp
-	        }
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return false;
-	}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 
 }
