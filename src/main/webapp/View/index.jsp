@@ -181,11 +181,8 @@
 													$<%=product.getCost()%>
 													/ kg
 												</p>
-												<form action="AddToCartController" method="POST">
-   
-												    <% request.setAttribute("idproduct", product.getId()); %>
-												
-												    <button type="submit" onclick="addToCart(<%= product.getId() %>)" class="btn border border-secondary rounded-pill px-3 text-primary">
+												<form action="AddToCartController?idproduct=<%=product.getId()%>" method="POST">
+												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">
 												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
 												    </button>
 												</form>
@@ -1021,7 +1018,7 @@
 		</div>
 	</div>
 </div>
-<script>
+<!-- <script>
     function addToCart(productId) {
         // Tạo một đối tượng XMLHttpRequest
         var xhr = new XMLHttpRequest();
@@ -1039,9 +1036,9 @@
         };
 
         // Gửi yêu cầu với dữ liệu là id sản phẩm
-        xhr.send("productId=" + productId);
+        xhr.send("idproduct=" + productId);
     }
-</script>
+</script> -->
 <!-- Tastimonial End -->
 <%@ include file="end.html"%>
 </body>
