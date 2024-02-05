@@ -85,8 +85,7 @@ public class AddToCartController extends HttpServlet {
                     productWithQuantityList.add(productWithQuantity);
                 }
                 request.setAttribute("productWithQuantityList", productWithQuantityList);
-                RequestDispatcher rd = request.getRequestDispatcher("/View/cart.jsp");
-                rd.forward(request, response);
+                response.sendRedirect("/re-java-web/CartDirector");
             } else {
                 System.out.println("Error adding item to cart");
                 RequestDispatcher rd = request.getRequestDispatcher("/View/404.jsp");
