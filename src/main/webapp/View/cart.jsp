@@ -35,10 +35,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                        <%-- <% 
-            List<Products> MeatList = (List<Products>)request.getAttribute("productWithQuantityList");
-            for(Products meat : MeatList) {
-        %> --%>
         <%
         	List<ProductWithQuantity> productss = (List<ProductWithQuantity>) request.getAttribute("productWithQuantityList");
         	if(productss==null){
@@ -79,7 +75,7 @@
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow()">
+                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow(<%=products.getProduct().getId()%>)" data-productId="<%=products.getProduct().getId()%>">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
@@ -123,15 +119,56 @@
         </div>
         <!-- Cart Page End -->
 		<script type="text/javascript">
-		function deleteRow(){
+		function deleteRow(productId){
 			document.addEventListener('click', function(event) {
 		        if (event.target.classList.contains('btn-md')) {
-		            var row = event.target.closest('tr');
-		            if (row) {
-		                row.remove();
-		            }
+		          Swal.fire({
+				  title: "Are you sure?",
+				  text: "You won't be able to revert this!",
+				  icon: "warning",
+				  showCancelButton: true,
+				  confirmButtonColor: "#3085d6",
+				  cancelButtonColor: "#d33",
+				  confirmButtonText: "Yes, delete it!"
+				  }).then((result) => {
+					 
+				  	if (result.isConfirmed) {
+						var row = event.target.closest('tr');
+						if (row) {
+	                        //var productId = row.getAttribute('data-productId'); // Assuming you have a data attribute containing product ID
+	                        // Gửi yêu cầu AJAX để xóa sản phẩm
+	                        $.ajax({
+	                            url: "/re-java-web/RemoveProductCart", // Đường dẫn tới Servlet xử lý yêu cầu
+	                            method: "POST",
+	                            data: { productId: productId },
+	                            success: function(response) {
+	                                // Xử lý phản hồi từ Servlet (nếu cần)
+	                                console.log(response);
+	                                // Xóa dòng từ giao diện người dùng
+	                                row.remove();
+	                                // Hiển thị thông báo thành công
+	                                Swal.fire({
+	                                    title: "Deleted!",
+	                                    text: "Your product has been deleted.",
+	                                    icon: "success"
+	                                });
+	                            },
+	                            error: function(xhr, status, error) {
+	                                console.error("Error:", error);
+	                            }
+	                        });
+	                    }
+				    	Swal.fire({
+				      	title: "Deleted!",
+				      	text: "Your file has been deleted.",
+				      	icon: "success"
+				    	});
+				  	}
+				});
 		        }
 		    });
+			
+
 		}
 		</script>
 <%@ include file="end.html" %>
