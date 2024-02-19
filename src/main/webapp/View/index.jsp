@@ -282,11 +282,13 @@
 													<%=vegetable.getCost()%>
 													/ kg
 												</p>
-												<form action="AddToCartController?idproduct=<%=vegetable.getId()%>" method="POST">
-												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
-												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
-												    </button>
-												</form>
+												<button
+													onclick="showUp('<%=vegetable.getId()%>', '<%=vegetable.getName_prod()%>', '<%=vegetable.getDescription()%>', '<%=vegetable.getImg_prod()%>', '<%=vegetable.getCost()%>');"
+													type="button"
+													class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+													<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+													Cart
+												</button>
 											</div>
 										</div>
 									</div>
@@ -331,11 +333,13 @@
 													$<%=fruit.getCost()%>
 													/ kg
 												</p>
-												<form action="AddToCartController?idproduct=<%=fruit.getId()%>" method="POST">
-												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
-												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
-												    </button>
-												</form>
+												<button
+													onclick="showUp('<%=fruit.getId()%>', '<%=fruit.getName_prod()%>', '<%=fruit.getDescription()%>', '<%=fruit.getImg_prod()%>', '<%=fruit.getCost()%>');"
+													type="button"
+													class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+													<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+													Cart
+												</button>
 											</div>
 										</div>
 									</div>
@@ -377,11 +381,13 @@
 												<p class="text-dark fs-5 fw-bold mb-0">
 													$<%=Bread.getCost()%>/piece
 												</p>
-												<form action="AddToCartController?idproduct=<%=Bread.getId()%>" method="POST">
-												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
-												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
-												    </button>
-												</form>
+												<button
+													onclick="showUp('<%=Bread.getId()%>', '<%=Bread.getName_prod()%>', '<%=Bread.getDescription()%>', '<%=Bread.getImg_prod()%>', '<%=Bread.getCost()%>');"
+													type="button"
+													class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+													<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+													Cart
+												</button>
 											</div>
 										</div>
 									</div>
@@ -424,11 +430,13 @@
 													$<%=meat.getCost()%>
 													/ kg
 												</p>
-												<form action="AddToCartController?idproduct=<%=meat.getId()%>" method="POST">
-												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
-												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
-												    </button>
-												</form>
+												<button
+													onclick="showUp('<%=meat.getId()%>', '<%=meat.getName_prod()%>', '<%=meat.getDescription()%>', '<%=meat.getImg_prod()%>', '<%=meat.getCost()%>');"
+													type="button"
+													class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+													<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+													Cart
+												</button>
 											</div>
 										</div>
 									</div>
