@@ -9,8 +9,8 @@
           <div class="photo-container">
             <div class="photo-main">
               <div class="controls">
-                <i class="material-icons">Share</i>
-                <i class="material-icons"> favorite_border </i>
+                <i class="fa-solid fa-share"></i>
+                <i class="fa-regular fa-heart"></i>
               </div>
               <img class="imgOverlay"
                 src="https://codetheworld.io/wp-content/uploads/2023/11/green-apple-with-slice.png"
@@ -506,7 +506,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-6.jpg"
+					<img src="public/img/vegetable-item-6.png"
 						class="img-fluid w-100 rounded-top" alt="" />
 				</div>
 				<div
@@ -527,7 +527,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-1.jpg"
+					<img src="public/img/vegetable-item-1.png"
 						class="img-fluid w-100 rounded-top" alt="" />
 				</div>
 				<div
@@ -548,7 +548,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-3.png"
+					<img src="public/img/fruit-item-3.png"
 						class="img-fluid w-100 rounded-top bg-light" alt="" />
 				</div>
 				<div
@@ -569,7 +569,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-4.jpg"
+					<img src="public/img/vegetable-item-4.png"
 						class="img-fluid w-100 rounded-top" alt="" />
 				</div>
 				<div
@@ -590,7 +590,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-5.jpg"
+					<img src="public/img/vegetable-item-5.png"
 						class="img-fluid w-100 rounded-top" alt="" />
 				</div>
 				<div
@@ -611,7 +611,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-6.jpg"
+					<img src="public/img/vegetable-item-6.png"
 						class="img-fluid w-100 rounded-top" alt="" />
 				</div>
 				<div
@@ -632,7 +632,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-5.jpg"
+					<img src="public/img/vegetable-item-5.png"
 						class="img-fluid w-100 rounded-top" alt="" />
 				</div>
 				<div
@@ -653,7 +653,7 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-6.jpg"
+					<img src="public/img/vegetable-item-6.png"
 						class="img-fluid w-100 rounded-top" alt="" />
 				</div>
 				<div
@@ -859,7 +859,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-xl-3">
 				<div class="text-center">
-					<img src="public/img/fruite-item-1.jpg" class="img-fluid rounded"
+					<img src="public/img/fruit-item-1.png" class="img-fluid rounded"
 						alt="" />
 					<div class="py-4">
 						<a href="#" class="h5">Organic Tomato</a>
@@ -878,7 +878,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-xl-3">
 				<div class="text-center">
-					<img src="public/img/fruite-item-2.jpg" class="img-fluid rounded"
+					<img src="public/img/fruit-item-2.png" class="img-fluid rounded"
 						alt="" />
 					<div class="py-4">
 						<a href="#" class="h5">Organic Tomato</a>
@@ -897,7 +897,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-xl-3">
 				<div class="text-center">
-					<img src="public/img/fruite-item-3.jpg" class="img-fluid rounded"
+					<img src="public/img/fruit-item-3.png" class="img-fluid rounded"
 						alt="" />
 					<div class="py-4">
 						<a href="#" class="h5">Organic Tomato</a>
@@ -916,7 +916,7 @@
 			</div>
 			<div class="col-md-6 col-lg-6 col-xl-3">
 				<div class="text-center">
-					<img src="public/img/fruite-item-4.jpg" class="img-fluid rounded"
+					<img src="public/img/fruit-item-4.png" class="img-fluid rounded"
 						alt="" />
 					<div class="py-2">
 						<a href="#" class="h5">Organic Tomato</a>

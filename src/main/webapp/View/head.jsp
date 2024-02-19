@@ -39,6 +39,8 @@
     <link href="public/css/overlay.css" rel="stylesheet" />
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="public/img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/03dcdfffe5.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
  <body>
@@ -116,9 +118,6 @@
             <div class="navbar-nav mx-auto">
               <a href="indexForward" class="nav-item nav-link active">Home</a>
               <a href="shopDirector" class="nav-item nav-link">Shop</a>
-              <a href="Detail_Product" class="nav-item nav-link"
-                >Shop Detail</a
-              >
               <div class="nav-item dropdown">
                 <a
                   href="#"
@@ -132,7 +131,6 @@
                   <a href="testimonial.jsp" class="dropdown-item"
                     >Testimonial</a
                   >
-                  <a href="404.jsp" class="dropdown-item">404 Page</a>
                 </div>
               </div>
               <a href="contact.jsp" class="nav-item nav-link">Contact</a>
