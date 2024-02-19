@@ -65,7 +65,7 @@
             >
             <small class="me-3"
               ><i class="fas fa-envelope me-2 text-secondary"></i
-              ><a href="#" class="text-white">Email@Example.com</a></small
+              ><a href="#" class="text-white">manhkien2003@Example.com</a></small
             >
           </div>
           <%
