@@ -2,6 +2,55 @@
 <%@ include file="head.jsp"%>
 <%@ page import="bean.Products"%>
 <%@ page import="java.util.List"%>
+
+    <div class="overlay">
+      <section class="product">
+        <div class="product-photo">
+          <div class="photo-container">
+            <div class="photo-main">
+              <div class="controls">
+                <i class="material-icons">Share</i>
+                <i class="material-icons"> favorite_border </i>
+              </div>
+              <img class="imgOverlay"
+                src="https://codetheworld.io/wp-content/uploads/2023/11/green-apple-with-slice.png"
+                alt="green apple slice"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="title">
+            <h1 class="name_product_overlay"></h1>
+            <span class="product_id"></span>
+            <span style="display:none;" id="product-uid"></span>
+          </div>
+          <div class="input-group quantity mt-4" style="width: 100px;">
+               <div class="input-group-btn">
+                   <button onclick="minusValue()" class="btn minus btn-sm rounded-circle bg-light border" >
+                   <i class="fa fa-minus"></i>
+                   </button>
+               </div>
+               <input onkeyup="changeValue(event)" type="text" id="quant" name="quantity" class="form-control form-control-sm text-center border-0 quantityCart" value="1">
+               <div class="input-group-btn">
+                  <button onclick="plusValue()" class="btn plus btn-sm rounded-circle bg-light border">
+                      <i class="fa fa-plus"></i>
+                  </button>
+               </div>
+		  </div>
+          
+          <div class="price">$<span class="priceVar"></span></div>
+          <div class="description">
+            <h3>Description</h3>
+            <p class="desc"></p>
+          </div>
+          <form id="addToCart" method="POST">
+          <button class="buy-btn">ADD TO CART</button>
+          </form>
+          <button class="cancel-btn">CANCEL </button>
+        </div>
+      </section>
+    </div>
 <!-- Hero Start -->
 <div class="container-fluid py-5 mb-5 hero-header">
 	<div class="container py-5">
@@ -174,19 +223,19 @@
 										<div
 											class="p-4 border border-secondary border-top-0 rounded-bottom">
 											<a href="Detail_Product?id=<%=product.getId()%>"><h4><%=product.getName_prod()%></h4></a>
-											<p>Lorem ipsum dolor sit amet consectetur adipisicing
-												elit sed do eiusmod te incididunt</p>
+											<p><%=product.getDescription() %></p>
 											<div class="d-flex justify-content-between flex-lg-wrap">
 												<p class="text-dark fs-5 fw-bold mb-0">
 													$<%=product.getCost()%>
 													/ kg
 												</p>
-												<form action="AddToCartController?idproduct=<%=product.getId()%>" method="POST">
-												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">
-												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
-												    </button>
-												</form>
-
+												<button
+													onclick="showUp('<%=product.getId()%>', '<%=product.getName_prod()%>', '<%=product.getDescription()%>', '<%=product.getImg_prod()%>', '<%=product.getCost()%>');"
+													type="button"
+													class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+													<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+													Cart
+												</button>
 											</div>
 										</div>
 									</div>
@@ -233,10 +282,11 @@
 													<%=vegetable.getCost()%>
 													/ kg
 												</p>
-												<a href="#"
-													class="btn border border-secondary rounded-pill px-3 text-primary"><i
-													class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-													cart</a>
+												<form action="AddToCartController?idproduct=<%=vegetable.getId()%>" method="POST">
+												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
+												    </button>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -281,10 +331,11 @@
 													$<%=fruit.getCost()%>
 													/ kg
 												</p>
-												<a href="#"
-													class="btn border border-secondary rounded-pill px-3 text-primary"><i
-													class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-													cart</a>
+												<form action="AddToCartController?idproduct=<%=fruit.getId()%>" method="POST">
+												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
+												    </button>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -326,10 +377,11 @@
 												<p class="text-dark fs-5 fw-bold mb-0">
 													$<%=Bread.getCost()%>/piece
 												</p>
-												<a href="#"
-													class="btn border border-secondary rounded-pill px-3 text-primary"><i
-													class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-													cart</a>
+												<form action="AddToCartController?idproduct=<%=Bread.getId()%>" method="POST">
+												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
+												    </button>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -372,10 +424,11 @@
 													$<%=meat.getCost()%>
 													/ kg
 												</p>
-												<a href="#"
-													class="btn border border-secondary rounded-pill px-3 text-primary"><i
-													class="fa fa-shopping-bag me-2 text-primary"></i> Add to
-													cart</a>
+												<form action="AddToCartController?idproduct=<%=meat.getId()%>" method="POST">
+												    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+												        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
+												    </button>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -1039,6 +1092,7 @@
         xhr.send("idproduct=" + productId);
     }
 </script>
+<script src="public/js/addCartOverLay.js"></script>
 <!-- Tastimonial End -->
 <%@ include file="end.html"%>
 </body>

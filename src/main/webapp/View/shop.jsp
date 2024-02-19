@@ -220,7 +220,7 @@
                                     <div class="col-12">
                                         <div class="pagination d-flex justify-content-center mt-5">
                                         <% if (currentPage > 1) { %>
-                                            <a href="#" class="rounded">&laquo;</a>
+                                            <a href="shopDirector?page=<%= currentPage-1 %>" class="rounded">&laquo;</a>
                                         <% } %>
                                             
                                         <% for (int i = 1; i <= totalPages; i++) { 
@@ -231,7 +231,7 @@
             								<a href="shopDirector?page=<%= i %>"><%= i %></a>
         								<% }}
                                         if (currentPage < totalPages) { %>
-                                            <a href="#" class="rounded">&raquo;</a>
+                                            <a href="shopDirector?page=<%= currentPage+1 %>" class="rounded">&raquo;</a>
                                         <% } %>
                                         </div>
                                     </div>

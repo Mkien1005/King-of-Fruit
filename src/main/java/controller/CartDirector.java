@@ -48,7 +48,7 @@ public class CartDirector extends HttpServlet {
                     "FROM productions p " +
                     "INNER JOIN cart c ON p.id = c.id_product " +
                     "INNER JOIN users u ON c.id_user = u.id " +
-                    "WHERE u.username = ?");
+                    "WHERE u.username = ? ORDER BY c.id DESC");
             pstmt.setString(1, username);
             rs = pstmt.executeQuery();
 

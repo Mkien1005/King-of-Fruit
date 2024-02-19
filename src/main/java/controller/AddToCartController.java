@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,37 +32,61 @@ public class AddToCartController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     	HttpSession session = request.getSession();
+    	ServletContext context = getServletContext();
+    	if(session.getAttribute("id_user") ==null) {
+    		response.sendRedirect("View/login.jsp");
+    		return;
+    	}
     	int id_user = (int) session.getAttribute("id_user");
 //    	System.out.println(getServletContext().getAttribute("id_user"));
     	int id_product = (int) Integer.parseInt(request.getParameter("idproduct"));
-
-        Connection cn = db.dbConnection.createConnection();
-        try {
+    	int quantity = (int) Integer.parseInt(request.getParameter("quantity"));
+    	Connection cn = db.dbConnection.createConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<Products> productList = new ArrayList<>();
+        List<ProductWithQuantity> productWithQuantityList = new ArrayList<>();
+    	try {
+			PreparedStatement check = cn.prepareStatement("SELECT quantity from cart where id_user=? and id_product=?");
+			check.setInt(1, id_user);
+            check.setInt(2, id_product);
+            ResultSet data = check.executeQuery();
+            if(data.next()) {
+            	// Lấy giá trị số lượng
+            	int quantityInDB;
+            	quantityInDB = data.getInt("quantity");
+            	quantityInDB=quantityInDB+quantity;
+            	PreparedStatement update = cn.prepareStatement("UPDATE cart SET quantity=? where id_user=? and id_product=?");
+            	update.setInt(1, quantityInDB);
+            	update.setInt(2, id_user);
+                update.setInt(3, id_product);
+                update.executeUpdate();
+                context.log("yhgfu"+quantity);
+            }else {
+            	try {
             PreparedStatement ps = cn.prepareStatement("INSERT INTO cart (id_user, id_product, quantity) VALUES (?, ?, ?)");
             ps.setInt(1, id_user);
             ps.setInt(2, id_product);
-            ps.setInt(3, 1);
+            ps.setInt(3, quantity);
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows > 0) {
-            	
             	System.out.println("Item added to cart successfully");
-        	    String username = (String) session.getAttribute("username");
-                Connection conn = null;
-                PreparedStatement pstmt = null;
-                ResultSet rs = null;
-                List<Products> productList = new ArrayList<>();
-                List<ProductWithQuantity> productWithQuantityList = new ArrayList<>();
-                try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kingoffruit","root","");
-                dbConnection.createConnection();
-                // Thực hiện truy vấn
-                pstmt =  conn.prepareStatement("SELECT p.*, c.quantity " +
+            } else {
+                System.out.println("Error adding item to cart");
+                RequestDispatcher rd = request.getRequestDispatcher("/View/404.jsp");
+                rd.forward(request, response);
+            }
+        } catch (SQLException e) {
+            // Xử lý lỗi SQL
+            e.printStackTrace();
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/View/404.jsp");
+            rd.forward(request, response);
+        }
+            }
+    	    String username = (String) session.getAttribute("username");
+            pstmt =  cn.prepareStatement("SELECT p.*, c.quantity " +
                         "FROM productions p " +
                         "INNER JOIN cart c ON p.id = c.id_product " +
                         "INNER JOIN users u ON c.id_user = u.id " +
@@ -78,27 +103,18 @@ public class AddToCartController extends HttpServlet {
                     String description = rs.getString("description");
                     String type = rs.getString("type");
                     String species = rs.getString("species");
-                    int quantity = rs.getInt("quantity");
+                    int quan = rs.getInt("quantity");
                     Products product = new Products(productId, productName, productImage, description, cost, type, species);
                     productList.add(product);
-                    ProductWithQuantity productWithQuantity = new ProductWithQuantity(product, quantity);
+                    ProductWithQuantity productWithQuantity = new ProductWithQuantity(product, quan);
                     productWithQuantityList.add(productWithQuantity);
                 }
                 request.setAttribute("productWithQuantityList", productWithQuantityList);
                 response.sendRedirect("/re-java-web/CartDirector");
-            } else {
-                System.out.println("Error adding item to cart");
-                RequestDispatcher rd = request.getRequestDispatcher("/View/404.jsp");
-                rd.forward(request, response);
-            }
-        } catch (SQLException e) {
-            // Xử lý lỗi SQL
-            e.printStackTrace();
-            
-            RequestDispatcher rd = request.getRequestDispatcher("/View/404.jsp");
-            rd.forward(request, response);
-        }
-
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 }

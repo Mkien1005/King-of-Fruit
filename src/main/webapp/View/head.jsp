@@ -36,7 +36,7 @@
 
     <!-- Template Stylesheet -->
     <link href="public/css/style.css" rel="stylesheet" />
-    
+    <link href="public/css/overlay.css" rel="stylesheet" />
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="public/img/icon.png">
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

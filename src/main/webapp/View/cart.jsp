@@ -63,7 +63,7 @@
                                             <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                        <input type="text" class="form-control form-control-sm text-center border-0" value="<%=products.getQuantity()%>">
                                         <div class="input-group-btn">
                                             <button class="btn btn-sm btn-plus rounded-circle bg-light border">
                                                 <i class="fa fa-plus"></i>
@@ -75,7 +75,7 @@
                                     <p class="mb-0 mt-4">2.99 $</p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="deleteRow(<%=products.getProduct().getId()%>)" data-productId="<%=products.getProduct().getId()%>">
+                                    <button onclick="deleteRow(<%=products.getProduct().getId()%>)" class="btn btn-md rounded-circle bg-light border mt-4"  data-productId="<%=products.getProduct().getId()%>">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
@@ -121,7 +121,7 @@
 		<script type="text/javascript">
 		function deleteRow(productId){
 			document.addEventListener('click', function(event) {
-		        if (event.target.classList.contains('btn-md')) {
+		        if (event.target.classList.contains('btn-md') || event.target.classList.contains('fa-times')) {
 		          Swal.fire({
 				  title: "Are you sure?",
 				  text: "You won't be able to revert this!",
