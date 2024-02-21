@@ -27,7 +27,7 @@ public class LogoutController extends HttpServlet {
             // Invalidates this session then unbinds any objects bound to it.
             session.invalidate();
             // Redirect về trang chính hoặc trang đăng nhập
-            response.sendRedirect("View/login.jsp");
+            response.sendRedirect("indexForward");
         }
 	}
 }

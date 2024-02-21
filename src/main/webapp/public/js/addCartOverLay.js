@@ -95,8 +95,10 @@ function plusValue() {
 	document.querySelector(".priceVar").innerText = cost.toFixed(2)
 	//truyền data về controller addToCart
 	var uid = document.querySelector("#product-uid").innerText;
-	var form = document.getElementById("addToCart");
-	form.action = `AddToCartController?idproduct=${uid}&quantity=${parseInt(document.getElementById('quant').getAttribute('value'))}`;
+	if(document.getElementById("addToCart")){
+		var form = document.getElementById("addToCart");
+		form.action = `AddToCartController?idproduct=${uid}&quantity=${parseInt(document.getElementById('quant').getAttribute('value'))}`;
+	}
 }
 function minusValue() {
 	let currentValue = parseInt(document.getElementById('quant').getAttribute('value'));
@@ -114,8 +116,10 @@ function minusValue() {
 	document.querySelector(".priceVar").innerText = cost.toFixed(2)
 	//truyền data về controller addToCart
 	var uid = document.querySelector("#product-uid").innerText;
-	var form = document.getElementById("addToCart");
-	form.action = `AddToCartController?idproduct=${uid}&quantity=${parseInt(document.getElementById('quant').getAttribute('value'))}`;
+	if(document.getElementById("addToCart")){
+		var form = document.getElementById("addToCart");
+		form.action = `AddToCartController?idproduct=${uid}&quantity=${parseInt(document.getElementById('quant').getAttribute('value'))}`;
+	}
 }
 }
 function showUp(id, name, desc, img, cost) {
@@ -130,7 +134,6 @@ function showUp(id, name, desc, img, cost) {
         var costDefault = document.querySelector(".price");
         var descP = document.querySelector(".desc");
         var quantity = document.querySelector("#quant").value;
-        console.log(quantity)
         uid.innerText = `${id}`;
         idP.innerText = `ID: ${id}`;
         modal.style.display = "flex";

@@ -72,7 +72,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
+                                    <p class="mb-0 mt-4"><%=products.getQuantity()* Float.parseFloat(products.getProduct().getCost())%> $</p>
                                 </td>
                                 <td>
                                     <button onclick="deleteRow(<%=products.getProduct().getId()%>)" class="btn btn-md rounded-circle bg-light border mt-4"  data-productId="<%=products.getProduct().getId()%>">
