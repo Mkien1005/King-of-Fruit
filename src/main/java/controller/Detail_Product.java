@@ -5,9 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,22 +17,23 @@ import db.dbConnection;
 
 @WebServlet("/Detail_Product")
 public class Detail_Product extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
+
     public Detail_Product() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String data = request.getParameter("id");
-		int id = Integer.parseInt(data);
-		Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-		try {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String data = request.getParameter("id");
+        int id = Integer.parseInt(data);
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
             // Kết nối tới cơ sở dữ liệu MySQL
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kingoffruit","root","");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kingoffruit", "root", "");
             dbConnection.createConnection();
             // Thực hiện truy vấn
             pstmt = conn.prepareStatement("SELECT * FROM `productions` WHERE `id`=?");
@@ -52,20 +50,21 @@ public class Detail_Product extends HttpServlet {
                 Products product = new Products(productId, productName, productImage, description, cost, type,
                         species);
 
-                request.setAttribute("product",(Object) product);
+                request.setAttribute("product", (Object) product);
                 RequestDispatcher rd = request.getRequestDispatcher("View/shop-detail.jsp");
                 rd.forward(request, response);
             } else {
                 // Không tìm thấy sản phẩm
-                response.getWriter().write("Không tìm thấy sản phẩm");
+                response.sendRedirect("View/404.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-	}
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
 
 }

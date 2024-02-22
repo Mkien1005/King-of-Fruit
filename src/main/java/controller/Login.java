@@ -1,13 +1,10 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,26 +16,25 @@ import db.dbConnection;
 
 @WebServlet("/controller/Login")
 public class Login extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
-       
+
+    private static final long serialVersionUID = 1L;
+
     public Login() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException 
-	{
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/plain");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         boolean dangNhapThanhCong = kiemTraDangNhap(username, password);
 
         if (dangNhapThanhCong) {
@@ -54,13 +50,14 @@ public class Login extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("failure");
         }
-//        RequestDispatcher rd = request.getRequestDispatcher("/View/test.jsp");
-//        rd.forward(request, response);
+        // RequestDispatcher rd = request.getRequestDispatcher("/View/test.jsp");
+        // rd.forward(request, response);
     }
 
-	private boolean kiemTraDangNhap(String username, String password) {
+    private boolean kiemTraDangNhap(String username, String password) {
         try (Connection connection = dbConnection.createConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?")) {
+                PreparedStatement statement = connection
+                        .prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?")) {
 
             statement.setString(1, username);
             statement.setString(2, password);
@@ -74,6 +71,5 @@ public class Login extends HttpServlet {
         }
         return false;
     }
-
 
 }
