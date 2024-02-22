@@ -75,7 +75,7 @@
                                     <p class="mb-0 mt-4"><%=products.getQuantity()* Float.parseFloat(products.getProduct().getCost())%> $</p>
                                 </td>
                                 <td>
-                                    <button onclick="deleteRow('<%= products.getProduct().getId()>')" class="btn btn-md rounded-circle bg-light border mt-4"  data-productId="<%=products.getProduct().getId()%>">
+                                    <button onclick="deleteRow(<%= products.getProduct().getId()%>)" class="btn btn-md rounded-circle bg-light border mt-4"  data-productId="<%=products.getProduct().getId()%>">
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
@@ -138,7 +138,7 @@
 	                        //var productId = row.getAttribute('data-productId'); // Assuming you have a data attribute containing product ID
 	                        // Gửi yêu cầu AJAX để xóa sản phẩm
 	                        $.ajax({
-	                            url: "/RemoveProductCart", // Đường dẫn tới Servlet xử lý yêu cầu
+	                            url: "/re-java-web/RemoveProductCart", // Đường dẫn tới Servlet xử lý yêu cầu
 	                            method: "POST",
 	                            data: { productId: productId },
 	                            success: function(response) {
