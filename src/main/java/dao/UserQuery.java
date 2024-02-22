@@ -1,7 +1,9 @@
 package dao;
+
 import java.sql.*;
 
 import bean.users;
+
 public class UserQuery {
 	public static boolean InsertUser(Connection con, users user) {
 		PreparedStatement pstm = null;
@@ -18,9 +20,9 @@ public class UserQuery {
 			pstm.setString(3, fullName);
 			pstm.setString(4, email);
 			pstm.setString(5, phone);
-			pstm.setString(6,"");
+			pstm.setString(6, "");
 			int check = pstm.executeUpdate();
-			if(check!=0) {
+			if (check != 0) {
 				return true;
 			}
 			pstm.close();
@@ -30,51 +32,45 @@ public class UserQuery {
 		}
 		return false;
 	}
-	    // Hàm để lấy giá trị id từ username
-	    public static int getUserIdByUsername(String username) {
-	        int userId = -1; // Giá trị mặc định nếu không tìm thấy
 
-	        Connection connection = null;
-	        PreparedStatement preparedStatement = null;
-	        ResultSet resultSet = null;
+	public static int getUserIdByUsername(String username) {
+		int userId = -1;
 
-	        try {
-	            // Tạo kết nối đến cơ sở dữ liệu
-	            connection = db.dbConnection.createConnection();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
 
-	            // Chuẩn bị câu truy vấn SQL
-	            String sql = "SELECT id FROM users WHERE username = ?";
-	            preparedStatement = connection.prepareStatement(sql);
-	            preparedStatement.setString(1, username);
+		try {
+			connection = db.dbConnection.createConnection();
 
-	            // Thực hiện truy vấn
-	            resultSet = preparedStatement.executeQuery();
+			String sql = "SELECT id FROM users WHERE username = ?";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, username);
 
-	            // Xử lý kết quả truy vấn
-	            if (resultSet.next()) {
-	                // Nếu có kết quả, lấy giá trị id từ cột "id"
-	                userId = resultSet.getInt("id");
-	            }
+			resultSet = preparedStatement.executeQuery();
 
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        } finally {
-	            // Đóng tất cả các tài nguyên
-	            try {
-	                if (resultSet != null) {
-	                    resultSet.close();
-	                }
-	                if (preparedStatement != null) {
-	                    preparedStatement.close();
-	                }
-	                if (connection != null) {
-	                    connection.close();
-	                }
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-	        }
+			if (resultSet.next()) {
+				userId = resultSet.getInt("id");
+			}
 
-	        return userId;
-	    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return userId;
+	}
 }
