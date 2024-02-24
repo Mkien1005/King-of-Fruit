@@ -85,14 +85,15 @@
 									</button>
 									ton>
 								</div> --%>
-								<button onclick="minus(this,<%=products.getProduct().getId() %>)"
+								
+								<button onclick="minus(event,this,<%=products.getProduct().getId() %>)"
 									class="btn btn-sm minus rounded-circle bg-light border">
 									<i class="fa fa-minus"></i>
 								</button>
 								<input onkeyup="change(event, this,<%=products.getProduct().getId() %>)" type="text" id="quant"
 									name="quantity"
 									class="form-control form-control-sm text-center border-0"
-									value="<%=products.getQuantity()%>" min="1">
+									value="<%=products.getQuantity()%>">
 								<button onclick="plus(this,<%=products.getProduct().getId() %>)"
 									class="btn btn-sm rounded-circle bg-light border">
 									<i class="fa fa-plus"></i>
@@ -103,7 +104,7 @@
 						</td>
 						<td>
 							<p class="mb-0 mt-4">
-								<span class="priceVar"><%=products.getQuantity() * Float.parseFloat(products.getProduct().getCost())%></span>$
+								<span class="priceVar"><%=products.getQuantity() * Float.parseFloat(products.getProduct().getCost()) %></span>$
 							</p>
 						</td>
 						<td>

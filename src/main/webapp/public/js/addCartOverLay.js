@@ -160,15 +160,26 @@ if(cancelButton){
 	};
 	
 }
+let prices = document.querySelectorAll(".priceVar");
+prices.forEach(function(price){
+	price.innerText = parseFloat(price.innerText).toFixed(2)
+})
 function minus(e,button, productId) {
         var input = button.closest('tr').querySelector('input');
-        if (parseInt(input.value) >1) {
-	        input.setAttribute('value',parseInt(input.value)-1)
-	        console.log(input.getAttribute('value'))
-	        /*input.value = parseInt(input.value)*/
-            updateTotal(button,productId);
+        if (parseInt(input.getAttribute('value')) >1) {
+        var input = button.closest('tr').querySelector('input');
+        //giữ nguyên giá trị
+        input.setAttribute('value',parseInt(input.value))
+        button.closest('tr').querySelector('input').value =input.getAttribute('value')
+        console.log(input.value)
+        //giảm
+        input.setAttribute('value',parseInt(input.value)-1)
+        button.closest('tr').querySelector('input').value = input.value
+        console.log(input.value)
+        input.value = parseInt(input.value);
+        updateTotal(button,productId);
         }else{
-			e.preventDefault;
+			e.preventDefault();
 			input.setAttribute('value',1)
 			button.closest('tr').querySelector('input').value = 1;
 			console.log("xóa")
@@ -191,7 +202,7 @@ function minus(e,button, productId) {
             input.value = 1;
             value = 1;
         }
-        updateTotal(button,productId);
+        updateTotal(input,productId);
     }
 
     function updateTotal(button,productId) {
@@ -234,7 +245,7 @@ function minus(e,button, productId) {
 
 function deleteRow(productId){
 			document.addEventListener('click', function(event) {
-		        if (event.target.classList.contains('btn-md') || event.target.classList.contains('fa-times')|| event.target.classList.contains('minus')) {
+		        if (event.target.classList.contains('btn-md') || event.target.classList.contains('fa-times')|| event.target.classList.contains('minus') && event.target.parentElement.parentNode.querySelector("#quant").value <=1 || event.target.classList.contains('fa-minus') && event.target.parentElement.parentNode.querySelector("#quant").value <=1) {
 		          Swal.fire({
 				  title: "Are you sure?",
 				  text: "You won't be able to revert this!",
@@ -276,7 +287,12 @@ function deleteRow(productId){
 				      	text: "Your file has been deleted.",
 				      	icon: "success"
 				    	});
-				  	}
+				  	}else{
+						  var button = document.querySelector("button[data-productId='" + productId + "']")
+						  var targetElement = button.parentElement.parentNode.querySelector("#quant");
+						  console.log(targetElement)
+						  targetElement.value = 1;
+					  }
 				});
 		        }
 		    });
