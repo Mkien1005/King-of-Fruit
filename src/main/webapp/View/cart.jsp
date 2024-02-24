@@ -44,44 +44,81 @@
         	}else{
         	for(ProductWithQuantity products : productss){
         %>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="public/img/<%=products.getProduct().getImg_prod()%>" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4"><%=products.getProduct().getName_prod() %></p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4"><%=products.getProduct().getCost() %> $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+					<tr>
+						<th scope="row">
+							<div class="d-flex align-items-center">
+								<img src="public/img/<%=products.getProduct().getImg_prod()%>"
+									class="img-fluid me-5 rounded-circle"
+									style="width: 80px; height: 80px;" alt="">
+							</div>
+						</th>
+						<td>
+							<p class="mb-0 mt-4"><%=products.getProduct().getName_prod()%></p>
+						</td>
+						<td>
+							<p class="mb-0 mt-4">
+								<span class="price"><%=products.getProduct().getCost()%></span>$
+							</p>
+						</td>
+						<td>
+							<div class="input-group quantity mt-4" style="width: 100px;">
+								<%-- <div class="input-group-btn">
+									<!--  <button onclick="minusValue()" class="btn btn-sm minus rounded-circle bg-light border" >
                                             <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="<%=products.getQuantity()%>">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4"><%=products.getQuantity()* Float.parseFloat(products.getProduct().getCost())%> $</p>
-                                </td>
-                                <td>
-                                    <button onclick="deleteRow(<%= products.getProduct().getId()%>)" class="btn btn-md rounded-circle bg-light border mt-4"  data-productId="<%=products.getProduct().getId()%>">
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            
-                            </tr>
-                            <%}} %>
+                                            </button> -->
+									<button
+										onclick="minusValue(this.nextElementSibling.querySelector('input'))"
+										class="btn btn-sm minus rounded-circle bg-light border">
+										<i class="fa fa-minus"></i>
+									</button>
+								</div>
+								<input onkeyup="changeValue(event)" type="text" id="quant" name="quantity" class="form-control form-control-sm text-center border-0" value="<%=products.getQuantity()%>">
+								<div class="input-group-btn">
+									<input onkeyup="changeValue(event, this)" type="text"
+										id="quant" name="quantity"
+										class="form-control form-control-sm text-center border-0"
+										value="<%=products.getQuantity()%>">
+									<button
+										onclick="plusValue(this.previousElementSibling.querySelector('input'))"
+										class="btn btn-sm plus rounded-circle bg-light border">
+										<i class="fa fa-plus"></i>
+									</button>
+									ton>
+								</div> --%>
+								<button onclick="minus(this,<%=products.getProduct().getId() %>)"
+									class="btn btn-sm minus rounded-circle bg-light border">
+									<i class="fa fa-minus"></i>
+								</button>
+								<input onkeyup="change(event, this,<%=products.getProduct().getId() %>)" type="text" id="quant"
+									name="quantity"
+									class="form-control form-control-sm text-center border-0"
+									value="<%=products.getQuantity()%>" min="1">
+								<button onclick="plus(this,<%=products.getProduct().getId() %>)"
+									class="btn btn-sm rounded-circle bg-light border">
+									<i class="fa fa-plus"></i>
+								</button>
+
+
+							</div>
+						</td>
+						<td>
+							<p class="mb-0 mt-4">
+								<span class="priceVar"><%=products.getQuantity() * Float.parseFloat(products.getProduct().getCost())%></span>$
+							</p>
+						</td>
+						<td>
+							<button onclick="deleteRow(<%=products.getProduct().getId()%>)"
+								class="btn btn-md rounded-circle bg-light border mt-4"
+								data-productId="<%=products.getProduct().getId()%>">
+								<i class="fa fa-times text-danger"></i>
+							</button>
+						</td>
+
+					</tr>
+					<%
+					}
+					}
+					%>
                         </tbody>
                     </table>
                 </div>
@@ -117,60 +154,7 @@
                 </div>
             </div>
         </div>
-        <!-- Cart Page End -->
-		<script type="text/javascript">
-		function deleteRow(productId){
-			document.addEventListener('click', function(event) {
-		        if (event.target.classList.contains('btn-md') || event.target.classList.contains('fa-times')) {
-		          Swal.fire({
-				  title: "Are you sure?",
-				  text: "You won't be able to revert this!",
-				  icon: "warning",
-				  showCancelButton: true,
-				  confirmButtonColor: "#3085d6",
-				  cancelButtonColor: "#d33",
-				  confirmButtonText: "Yes, delete it!"
-				  }).then((result) => {
-					 
-				  	if (result.isConfirmed) {
-						var row = event.target.closest('tr');
-						if (row) {
-	                        //var productId = row.getAttribute('data-productId'); // Assuming you have a data attribute containing product ID
-	                        // Gửi yêu cầu AJAX để xóa sản phẩm
-	                        $.ajax({
-	                            url: "/re-java-web/RemoveProductCart", // Đường dẫn tới Servlet xử lý yêu cầu
-	                            method: "POST",
-	                            data: { productId: productId },
-	                            success: function(response) {
-	                                // Xử lý phản hồi từ Servlet (nếu cần)
-	                                console.log(response);
-	                                // Xóa dòng từ giao diện người dùng
-	                                row.remove();
-	                                // Hiển thị thông báo thành công
-	                                Swal.fire({
-	                                    title: "Deleted!",
-	                                    text: "Your product has been deleted.",
-	                                    icon: "success"
-	                                });
-	                            },
-	                            error: function(xhr, status, error) {
-	                                console.error("Error:", error);
-	                            }
-	                        });
-	                    }
-				    	Swal.fire({
-				      	title: "Deleted!",
-				      	text: "Your file has been deleted.",
-				      	icon: "success"
-				    	});
-				  	}
-				});
-		        }
-		    });
-			
-
-		}
-		</script>
+		<script src="public/js/addCartOverLay.js"></script>
 <%@ include file="end.html" %>
     </body>
 </html>

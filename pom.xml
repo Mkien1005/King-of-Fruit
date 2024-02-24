@@ -12,6 +12,12 @@
         <version>3.0.1</version>
         <scope>provided</scope>
     </dependency>
+    <dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20210307</version> <!-- Thay đổi phiên bản nếu cần -->
+</dependency>
+
     </dependencies>
   <build>
     <plugins>

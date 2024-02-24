@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Products;
+import db.dbConnection;
 public class GetProduct {
+	static Connection connection = null;
+	static PreparedStatement preparedStatement = null;
+	static ResultSet rs = null;
 	public static List<Products> getAllProducts(){
 		List<Products> productList = new ArrayList<>();
-		Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet rs = null;
 		connection = db.dbConnection.createConnection();
 		String sql = "SELECT * FROM productions";
         try {
@@ -35,5 +36,17 @@ public class GetProduct {
 			e.printStackTrace();
 		}
 		return productList;
+	}
+	public static void updateQuantity(int id, int newQuantity, int username) {
+		connection = db.dbConnection.createConnection();
+        try {
+			preparedStatement = connection.prepareStatement("UPDATE cart SET quantity = ? WHERE id_product = ? AND id_user = ?");
+			preparedStatement.setInt(1, newQuantity);
+			preparedStatement.setInt(2, id);
+			preparedStatement.setInt(3, username);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

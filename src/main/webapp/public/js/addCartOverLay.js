@@ -94,8 +94,8 @@ function plusValue() {
 	let cost = parseFloat(price) * parseInt(currentValue);
 	document.querySelector(".priceVar").innerText = cost.toFixed(2)
 	//truyền data về controller addToCart
-	var uid = document.querySelector("#product-uid").innerText;
 	if(document.getElementById("addToCart")){
+		var uid = document.querySelector("#product-uid").innerText;
 		var form = document.getElementById("addToCart");
 		form.action = `AddToCartController?idproduct=${uid}&quantity=${parseInt(document.getElementById('quant').getAttribute('value'))}`;
 	}
@@ -110,13 +110,16 @@ function minusValue() {
 	// Cập nhật giá trị mới vào thuộc tính value của phần tử input
 	document.getElementById('quant').setAttribute('value', currentValue);
 	console.log(document.getElementById('quant').value)
-	let price = document.querySelector(".price").id;
+	let price;
+	if(document.querySelector(".price").id){
+		price = document.querySelector(".price").id;
+	}
 	console.log(price)
 	let cost = parseFloat(price) * parseInt(currentValue);
 	document.querySelector(".priceVar").innerText = cost.toFixed(2)
 	//truyền data về controller addToCart
-	var uid = document.querySelector("#product-uid").innerText;
 	if(document.getElementById("addToCart")){
+		var uid = document.querySelector("#product-uid").innerText;
 		var form = document.getElementById("addToCart");
 		form.action = `AddToCartController?idproduct=${uid}&quantity=${parseInt(document.getElementById('quant').getAttribute('value'))}`;
 	}
@@ -151,9 +154,73 @@ window.onclick = function (event) {
 };
 
 // Xử lý sự kiện khi nhấn nút "Cancel"
-cancelButton.onclick = function () {
-  modal.style.display = "none";
-};
+if(cancelButton){
+	cancelButton.onclick = function () {
+	  modal.style.display = "none";
+	};
+	
+}
+function minus(e,button, productId) {
+        var input = button.closest('tr').querySelector('input');
+        if (parseInt(input.value) >1) {
+	        input.setAttribute('value',parseInt(input.value)-1)
+	        console.log(input.getAttribute('value'))
+	        /*input.value = parseInt(input.value)*/
+            updateTotal(button,productId);
+        }else{
+			e.preventDefault;
+			input.setAttribute('value',1)
+			button.closest('tr').querySelector('input').value = 1;
+			console.log("xóa")
+			deleteRow(productId);
+		}
+    }
+
+    function plus(button,productId) {
+        var input = button.closest('tr').querySelector('input');
+        input.setAttribute('value',parseInt(input.value)+1)
+        console.log(input)
+        button.closest('tr').querySelector('input').value =input.getAttribute('value')
+        input.value = parseInt(input.value) + 1;
+        updateTotal(button,productId);
+    }
+
+    function change(event, input,productId) {
+        var value = parseInt(input.value);
+        if (isNaN(value) || value <= 0) {
+            input.value = 1;
+            value = 1;
+        }
+        updateTotal(button,productId);
+    }
+
+    function updateTotal(button,productId) {
+		var input = button.closest('tr').querySelector('input');
+        var quantity = parseInt(input.getAttribute('value'));
+        var price = parseFloat(input.closest('tr').querySelector('.price').innerText);
+        var totalElement = input.closest('tr').querySelector('.priceVar');
+        var total = quantity * price;
+        totalElement.innerText = total.toFixed(2);
+        var xhr = new XMLHttpRequest()
+        productId = parseInt(productId)
+		$.ajax({
+			url: '/re-java-web/updateProduct?productId='+productId+'&quantity='+quantity, // Đường dẫn tới Servlet
+			method: 'POST', // Phương thức HTTP
+			data: {
+				idproduct: productId,
+				quantity: quantity
+			},
+			success: function(response) {
+				// Xử lý phản hồi thành công
+				console.log(response);
+				console.log(quantity)
+			},
+			error: function(xhr, status, error) {
+				// Xử lý lỗi
+				console.error(xhr.responseText);
+			}
+});
+    }
 
 // Xử lý sự kiện khi nhấn nút "Add"
 /*addButton.onclick = function () {
@@ -164,6 +231,58 @@ cancelButton.onclick = function () {
   modal.style.display = "none";
 };
 */
+
+function deleteRow(productId){
+			document.addEventListener('click', function(event) {
+		        if (event.target.classList.contains('btn-md') || event.target.classList.contains('fa-times')|| event.target.classList.contains('minus')) {
+		          Swal.fire({
+				  title: "Are you sure?",
+				  text: "You won't be able to revert this!",
+				  icon: "warning",
+				  showCancelButton: true,
+				  confirmButtonColor: "#3085d6",
+				  cancelButtonColor: "#d33",
+				  confirmButtonText: "Yes, delete it!"
+				  }).then((result) => {
+					 
+				  	if (result.isConfirmed) {
+						var row = event.target.closest('tr');
+						if (row) {
+	                        //var productId = row.getAttribute('data-productId'); // Assuming you have a data attribute containing product ID
+	                        // Gửi yêu cầu AJAX để xóa sản phẩm
+	                        $.ajax({
+	                            url: "/re-java-web/RemoveProductCart", // Đường dẫn tới Servlet xử lý yêu cầu
+	                            method: "POST",
+	                            data: { productId: productId },
+	                            success: function(response) {
+	                                // Xử lý phản hồi từ Servlet (nếu cần)
+	                                console.log(response);
+	                                // Xóa dòng từ giao diện người dùng
+	                                row.remove();
+	                                // Hiển thị thông báo thành công
+	                                Swal.fire({
+	                                    title: "Deleted!",
+	                                    text: "Your product has been deleted.",
+	                                    icon: "success"
+	                                });
+	                            },
+	                            error: function(xhr, status, error) {
+	                                console.error("Error:", error);
+	                            }
+	                        });
+	                    }
+				    	Swal.fire({
+				      	title: "Deleted!",
+				      	text: "Your file has been deleted.",
+				      	icon: "success"
+				    	});
+				  	}
+				});
+		        }
+		    });
+			
+
+		}
 // Đặt thông tin sản phẩm
 function setProductInfo(name, imageSrc) {
   productNameElement.textContent = name;

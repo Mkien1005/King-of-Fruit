@@ -1079,7 +1079,7 @@
 		</div>
 	</div>
 </div>
-<script>
+<!-- <script>
     function addToCart(productId) {
         // Tạo một đối tượng XMLHttpRequest
         var xhr = new XMLHttpRequest();
@@ -1099,7 +1099,7 @@
         // Gửi yêu cầu với dữ liệu là id sản phẩm
         xhr.send("idproduct=" + productId);
     }
-</script>
+</script> -->
 <script src="public/js/addCartOverLay.js"></script>
 <!-- Tastimonial End -->
 <%@ include file="end.html"%>
