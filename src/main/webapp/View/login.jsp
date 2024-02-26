@@ -83,9 +83,9 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-			</div>
+			</div><!-- 
 			<div class="toast-body">
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -99,6 +99,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
 		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 		crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/03dcdfffe5.js" crossorigin="anonymous"></script>
 	<script src="../public/js/jquery.min.js"></script>
 	<script src="../public/js/popper.js"></script>
 	<script src="../public/js/bootstrap.min.js"></script>
@@ -118,14 +119,26 @@
 				if (xhr.readyState === 4 && xhr.status === 200) {
 					var response = xhr.responseText;
 					if (response === "success") {
-						showBootstrapToast("Đăng nhập thành công!");
-						// Đăng nhập thành công, chuyển hướng hoặc thực hiện hành động khác
+						//showBootstrapToast("Tên đăng nhập hoặc mật khẩu không đúng!");
+							Swal.fire({
+  								position: "mid-mid",
+  								icon: "success",
+  								title: "Log in success!",
+  								showConfirmButton: false,
+  								timer: 1500
+							});
+						// Đăng nhập thành công, ch	uyển hướng hoặc thực hiện hành động khác
 						setTimeout(function() {
 		                    window.location.href = "../indexForward";
 		                }, 2000);					
 						} else {
 						// Đăng nhập không thành công, hiển thị thông báo lỗi
-						showBootstrapToast("Tên đăng nhập hoặc mật khẩu không đúng!");
+						//showBootstrapToast("Tên đăng nhập hoặc mật khẩu không đúng!");
+							Swal.fire({
+								  icon: "error",
+								  title: "Wrong...",
+								  text: "Username or password is wrong!"
+								});
 					}
 				}
 			};
@@ -142,5 +155,7 @@
 			$('.toast').toast('show');
 		}
 	</script>
+	
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
