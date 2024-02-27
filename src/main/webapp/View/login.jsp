@@ -21,8 +21,13 @@
 <link rel="stylesheet" href="../public/css1/style.css">
 <link rel="icon" type="image/x-icon" href="../public/img/icon.png">
 </head>
-<body class="img js-fullheight"
-	style="background-image: url(../public/img/bg.jpg);">
+<body>
+<div class="img js-fullheight"
+	style="background-image: url(../public/img/bg.jpg);
+	background-size: cover;
+    background-position: center;
+    height: 100%;
+    overflow: hidden;">
 	<form method="post">
 		<section class="ftco-section">
 			<div class="container">
@@ -59,34 +64,14 @@
 									</div>
 								</div>
 							</form>
-							<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-							<div class="social d-flex text-center">
-								<a href="#" class="px-2 py-2 mr-md-1 rounded"><span
-									class="ion-logo-facebook mr-2"></span> Facebook</a> <a href="#"
-									class="px-2 py-2 ml-md-1 rounded"><span
-									class="ion-logo-twitter mr-2"></span> Twitter</a>
-							</div>
+							<p>Don't have an account?</p>
+							<a class="form-control btn btn-primary submit px-3" style="padding-top: 14px;" href="./register.jsp">Create a new account</a>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</section>
 	</form>
-	<div aria-live="polite" aria-atomic="true"
-		style="position: relative; min-height: 200px;">
-		<div class="toast" style="position: absolute; top: 0; right: 0;">
-			<div class="toast-header">
-				<img src="..." class="rounded mr-2" alt="..."> <strong
-					class="mr-auto">Hệ thống!</strong> <small>Just now</small>
-				<button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div><!-- 
-			<div class="toast-body">
-			</div> -->
-		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -54,10 +54,10 @@ public class indexForward extends HttpServlet {
 				Products product = new Products(productId, productName, productImage, description, cost, type, species);
 				productList.add(product);
 			}
-			List<Products> VegetablesList = getVegetable();
-			List<Products> FruitList = getFruit();
-			List<Products> BreadList = getBread();
-			List<Products> MeatList = getMeat();
+			List<Products> VegetablesList = dao.GetProduct.getVegetable();
+			List<Products> FruitList = dao.GetProduct.getFruit();
+			List<Products> BreadList = dao.GetProduct.getBread();
+			List<Products> MeatList = dao.GetProduct.getMeat();
 			request.setAttribute("productList", productList);
 			request.setAttribute("VegetablesList", VegetablesList);
 			request.setAttribute("FruitList", FruitList);
@@ -68,135 +68,6 @@ public class indexForward extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// } finally {
-		// try {
-		// if (rs != null) rs.close();
-		// if (pstmt != null) pstmt.close();
-		// if (conn != null) conn.close();
-		// } catch (SQLException e) {
-		// e.printStackTrace();
-		// }
-		// }
-	}
-
-	public static List<Products> getVegetable() {
-		List<Products> List = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kingoffruit", "root", "");
-			dbConnection.createConnection();
-			pstmt = conn.prepareStatement("SELECT * FROM `productions` WHERE `type`='Vegetables' LIMIT 8");
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int productId = rs.getInt("id");
-				String productName = rs.getString("name_prod");
-				String productImage = rs.getString("img_prod");
-				String cost = rs.getString("cost");
-				String description = rs.getString("description");
-				String type = rs.getString("type");
-				String species = rs.getString("species");
-				Products product = new Products(productId, productName, productImage, description, cost, type, species);
-				List.add(product);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return List;
-	}
-
-	public static List<Products> getFruit() {
-		List<Products> List = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kingoffruit", "root", "");
-			dbConnection.createConnection();
-			pstmt = conn.prepareStatement("SELECT * FROM `productions` WHERE `type`='Fruits' LIMIT 8");
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int productId = rs.getInt("id");
-				String productName = rs.getString("name_prod");
-				String productImage = rs.getString("img_prod");
-				String cost = rs.getString("cost");
-				String description = rs.getString("description");
-				String type = rs.getString("type");
-				String species = rs.getString("species");
-				Products product = new Products(productId, productName, productImage, description, cost, type, species);
-				List.add(product);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return List;
-	}
-
-	public static List<Products> getBread() {
-		List<Products> List = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kingoffruit", "root", "");
-			dbConnection.createConnection();
-			pstmt = conn.prepareStatement("SELECT * FROM `productions` WHERE `type`='Bread' LIMIT 8");
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int productId = rs.getInt("id");
-				String productName = rs.getString("name_prod");
-				String productImage = rs.getString("img_prod");
-				String cost = rs.getString("cost");
-				String description = rs.getString("description");
-				String type = rs.getString("type");
-				String species = rs.getString("species");
-				Products product = new Products(productId, productName, productImage, description, cost, type, species);
-				List.add(product);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return List;
-	}
-
-	public static List<Products> getMeat() {
-		List<Products> List = new ArrayList<>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kingoffruit", "root", "");
-			dbConnection.createConnection();
-			pstmt = conn.prepareStatement("SELECT * FROM `productions` WHERE `type`='Meat' LIMIT 8");
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int productId = rs.getInt("id");
-				String productName = rs.getString("name_prod");
-				String productImage = rs.getString("img_prod");
-				String cost = rs.getString("cost");
-				String description = rs.getString("description");
-				String type = rs.getString("type");
-				String species = rs.getString("species");
-				Products product = new Products(productId, productName, productImage, description, cost, type, species);
-				List.add(product);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return List;
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
