@@ -32,7 +32,6 @@ public class indexForward extends HttpServlet {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Products> productList = new ArrayList<>();
-
 		try {
 			// Kết nối tới cơ sở dữ liệu MySQL
 			Class.forName("com.mysql.cj.jdbc.Driver");
