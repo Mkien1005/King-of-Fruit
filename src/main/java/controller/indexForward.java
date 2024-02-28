@@ -57,11 +57,15 @@ public class indexForward extends HttpServlet {
 			List<Products> FruitList = dao.GetProduct.getFruit();
 			List<Products> BreadList = dao.GetProduct.getBread();
 			List<Products> MeatList = dao.GetProduct.getMeat();
+			List<Products> BestSellerList1 = dao.GetProduct.getProductsQuantityBought1();
+			List<Products> BestSellerList2 = dao.GetProduct.getProductsQuantityBought2();
 			request.setAttribute("productList", productList);
 			request.setAttribute("VegetablesList", VegetablesList);
 			request.setAttribute("FruitList", FruitList);
 			request.setAttribute("BreadList", BreadList);
 			request.setAttribute("MeatList", MeatList);
+			request.setAttribute("BestSeller1", BestSellerList1);
+			request.setAttribute("BestSeller2", BestSellerList2);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/View/index.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

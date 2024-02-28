@@ -3,54 +3,59 @@
 <%@ page import="bean.Products"%>
 <%@ page import="java.util.List"%>
 
-    <div class="overlay">
-      <section class="product">
-        <div class="product-photo">
-          <div class="photo-container">
-            <div class="photo-main">
-              <div class="controls">
-                <i class="fa-solid fa-share"></i>
-                <i class="fa-regular fa-heart"></i>
-              </div>
-              <img class="imgOverlay"
-                src="https://codetheworld.io/wp-content/uploads/2023/11/green-apple-with-slice.png"
-                alt="green apple slice"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="product-info">
-          <div class="title">
-            <h1 class="name_product_overlay"></h1>
-            <span class="product_id"></span>
-            <span style="display:none;" id="product-uid"></span>
-          </div>
-          <div class="input-group quantity mt-4" style="width: 100px;">
-               <div class="input-group-btn">
-                   <button onclick="minusValue()" class="btn minus btn-sm rounded-circle bg-light border" >
-                   <i class="fa fa-minus"></i>
-                   </button>
-               </div>
-               <input onkeyup="changeValue(event)" type="text" id="quant" name="quantity" class="form-control form-control-sm text-center border-0 quantityCart" value="1">
-               <div class="input-group-btn">
-                  <button onclick="plusValue()" class="btn plus btn-sm rounded-circle bg-light border">
-                      <i class="fa fa-plus"></i>
-                  </button>
-               </div>
-		  </div>
-          
-          <div class="price">$<span class="priceVar"></span></div>
-          <div class="description">
-            <h3>Description</h3>
-            <p class="desc"></p>
-          </div>
-          <form id="addToCart" method="POST">
-          <button class="buy-btn">ADD TO CART</button>
-          </form>
-          <button class="cancel-btn">CANCEL </button>
-        </div>
-      </section>
-    </div>
+<div class="overlay">
+	<section class="product">
+		<div class="product-photo">
+			<div class="photo-container">
+				<div class="photo-main">
+					<div class="controls">
+						<i class="fa-solid fa-share"></i> <i class="fa-regular fa-heart"></i>
+					</div>
+					<img class="imgOverlay"
+						src="https://codetheworld.io/wp-content/uploads/2023/11/green-apple-with-slice.png"
+						alt="green apple slice" />
+				</div>
+			</div>
+		</div>
+		<div class="product-info">
+			<div class="title">
+				<h1 class="name_product_overlay"></h1>
+				<span class="product_id"></span> <span style="display: none;"
+					id="product-uid"></span>
+			</div>
+			<div class="input-group quantity mt-4" style="width: 100px;">
+				<div class="input-group-btn">
+					<button onclick="minusValue()"
+						class="btn minus btn-sm rounded-circle bg-light border">
+						<i class="fa fa-minus"></i>
+					</button>
+				</div>
+				<input onkeyup="changeValue(event)" type="text" id="quant"
+					name="quantity"
+					class="form-control form-control-sm text-center border-0 quantityCart"
+					value="1">
+				<div class="input-group-btn">
+					<button onclick="plusValue()"
+						class="btn plus btn-sm rounded-circle bg-light border">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="price">
+				$<span class="priceVar"></span>
+			</div>
+			<div class="description">
+				<h3>Description</h3>
+				<p class="desc"></p>
+			</div>
+			<form id="addToCart" method="POST">
+				<button class="buy-btn">ADD TO CART</button>
+			</form>
+			<button class="cancel-btn">CANCEL</button>
+		</div>
+	</section>
+</div>
 <!-- Hero Start -->
 <div class="container-fluid py-5 mb-5 hero-header">
 	<div class="container py-5">
@@ -223,7 +228,7 @@
 										<div
 											class="p-4 border border-secondary border-top-0 rounded-bottom">
 											<a href="Detail_Product?id=<%=product.getId()%>"><h4><%=product.getName_prod()%></h4></a>
-											<p><%=product.getDescription() %></p>
+											<p><%=product.getDescription()%></p>
 											<div class="d-flex justify-content-between flex-lg-wrap">
 												<p class="text-dark fs-5 fw-bold mb-0">
 													$<%=product.getCost()%>
@@ -511,174 +516,42 @@
 	<div class="container py-5">
 		<h1 class="mb-0">Fresh Organic Vegetables</h1>
 		<div class="owl-carousel vegetable-carousel justify-content-center">
+			<%
+			for (Products vegetable : VegetablesList) {
+			%>
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-6.png"
-						class="img-fluid w-100 rounded-top" alt="" />
+					<img src="public/img/<%=vegetable.getImg_prod()%>"
+						class="img-fluid w-100 rounded-top" alt=""
+						style="width: 80px; height: 250px;" />
 				</div>
 				<div
 					class="text-white bg-primary px-3 py-1 rounded position-absolute"
 					style="top: 10px; right: 10px">Vegetable</div>
 				<div class="p-4 rounded-bottom">
-					<h4>Parsely</h4>
+					<h4><%=vegetable.getName_prod()%></h4>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
 						do eiusmod te incididunt</p>
 					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+						<p class="text-dark fs-5 fw-bold mb-0">
+							$
+							<%=vegetable.getCost()%>
+							/ kg
+						</p>
+						<button
+							onclick="showUp('<%=vegetable.getId()%>', '<%=vegetable.getName_prod()%>', '<%=vegetable.getDescription()%>', '<%=vegetable.getImg_prod()%>', '<%=vegetable.getCost()%>');"
+							type="button"
+							class="btn border border-secondary rounded-pill px-3 text-primary ">
+							<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Cart
+						</button>
+
 					</div>
 				</div>
 			</div>
-			<div
-				class="border border-primary rounded position-relative vesitable-item">
-				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-1.png"
-						class="img-fluid w-100 rounded-top" alt="" />
-				</div>
-				<div
-					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
-				<div class="p-4 rounded-bottom">
-					<h4>Parsely</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-						do eiusmod te incididunt</p>
-					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div
-				class="border border-primary rounded position-relative vesitable-item">
-				<div class="vesitable-img">
-					<img src="public/img/fruit-item-3.png"
-						class="img-fluid w-100 rounded-top bg-light" alt="" />
-				</div>
-				<div
-					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
-				<div class="p-4 rounded-bottom">
-					<h4>Banana</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-						do eiusmod te incididunt</p>
-					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div
-				class="border border-primary rounded position-relative vesitable-item">
-				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-4.png"
-						class="img-fluid w-100 rounded-top" alt="" />
-				</div>
-				<div
-					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
-				<div class="p-4 rounded-bottom">
-					<h4>Bell Papper</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-						do eiusmod te incididunt</p>
-					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div
-				class="border border-primary rounded position-relative vesitable-item">
-				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-5.png"
-						class="img-fluid w-100 rounded-top" alt="" />
-				</div>
-				<div
-					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
-				<div class="p-4 rounded-bottom">
-					<h4>Potatoes</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-						do eiusmod te incididunt</p>
-					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div
-				class="border border-primary rounded position-relative vesitable-item">
-				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-6.png"
-						class="img-fluid w-100 rounded-top" alt="" />
-				</div>
-				<div
-					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
-				<div class="p-4 rounded-bottom">
-					<h4>Parsely</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-						do eiusmod te incididunt</p>
-					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div
-				class="border border-primary rounded position-relative vesitable-item">
-				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-5.png"
-						class="img-fluid w-100 rounded-top" alt="" />
-				</div>
-				<div
-					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
-				<div class="p-4 rounded-bottom">
-					<h4>Potatoes</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-						do eiusmod te incididunt</p>
-					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div
-				class="border border-primary rounded position-relative vesitable-item">
-				<div class="vesitable-img">
-					<img src="public/img/vegetable-item-6.png"
-						class="img-fluid w-100 rounded-top" alt="" />
-				</div>
-				<div
-					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
-				<div class="p-4 rounded-bottom">
-					<h4>Parsely</h4>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
-						do eiusmod te incididunt</p>
-					<div class="d-flex justify-content-between flex-lg-wrap">
-						<p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
+			<%
+			}
+			%>
 		</div>
 	</div>
 </div>
@@ -727,220 +600,67 @@
 				structures, to generate Lorem Ipsum which looks reasonable.</p>
 		</div>
 		<div class="row g-4">
+			<%
+			List<Products> BestSeller1 = (List<Products>) request.getAttribute("BestSeller1");
+			for (Products bestseller : BestSeller1) {
+			%>
 			<div class="col-lg-6 col-xl-4">
 				<div class="p-4 rounded bg-light">
 					<div class="row align-items-center">
 						<div class="col-6">
-							<img src="public/img/best-product-1.jpg"
-								class="img-fluid rounded-circle w-100" alt="" />
+							<img src="public/img/<%=bestseller.getImg_prod() %>"
+								class="img-fluid rounded-circle w-100" alt="" style="height: 155px;"/>
 						</div>
 						<div class="col-6">
-							<a href="#" class="h5">Organic Tomato</a>
+							<a href="#" class="h5"><%=bestseller.getName_prod() %></a>
 							<div class="d-flex my-3">
 								<i class="fas fa-star text-primary"></i> <i
 									class="fas fa-star text-primary"></i> <i
 									class="fas fa-star text-primary"></i> <i
 									class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
 							</div>
-							<h4 class="mb-3">3.12 $</h4>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+							<h4 class="mb-3"><%=bestseller.getCost() %> $</h4>
+							<button
+								onclick="showUp('<%=bestseller.getId()%>', '<%=bestseller.getName_prod()%>', '<%=bestseller.getDescription()%>', '<%=bestseller.getImg_prod()%>', '<%=bestseller.getCost()%>');"
+								type="button"
+								class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+								<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+								Cart
+							</button>
+						
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6 col-xl-4">
-				<div class="p-4 rounded bg-light">
-					<div class="row align-items-center">
-						<div class="col-6">
-							<img src="public/img/best-product-2.jpg"
-								class="img-fluid rounded-circle w-100" alt="" />
-						</div>
-						<div class="col-6">
-							<a href="#" class="h5">Organic Tomato</a>
-							<div class="d-flex my-3">
-								<i class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-							</div>
-							<h4 class="mb-3">3.12 $</h4>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 col-xl-4">
-				<div class="p-4 rounded bg-light">
-					<div class="row align-items-center">
-						<div class="col-6">
-							<img src="public/img/best-product-3.jpg"
-								class="img-fluid rounded-circle w-100" alt="" />
-						</div>
-						<div class="col-6">
-							<a href="#" class="h5">Organic Tomato</a>
-							<div class="d-flex my-3">
-								<i class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-							</div>
-							<h4 class="mb-3">3.12 $</h4>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 col-xl-4">
-				<div class="p-4 rounded bg-light">
-					<div class="row align-items-center">
-						<div class="col-6">
-							<img src="public/img/best-product-4.jpg"
-								class="img-fluid rounded-circle w-100" alt="" />
-						</div>
-						<div class="col-6">
-							<a href="#" class="h5">Organic Tomato</a>
-							<div class="d-flex my-3">
-								<i class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-							</div>
-							<h4 class="mb-3">3.12 $</h4>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 col-xl-4">
-				<div class="p-4 rounded bg-light">
-					<div class="row align-items-center">
-						<div class="col-6">
-							<img src="public/img/best-product-5.jpg"
-								class="img-fluid rounded-circle w-100" alt="" />
-						</div>
-						<div class="col-6">
-							<a href="#" class="h5">Organic Tomato</a>
-							<div class="d-flex my-3">
-								<i class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-							</div>
-							<h4 class="mb-3">3.12 $</h4>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6 col-xl-4">
-				<div class="p-4 rounded bg-light">
-					<div class="row align-items-center">
-						<div class="col-6">
-							<img src="public/img/best-product-6.jpg"
-								class="img-fluid rounded-circle w-100" alt="" />
-						</div>
-						<div class="col-6">
-							<a href="#" class="h5">Organic Tomato</a>
-							<div class="d-flex my-3">
-								<i class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i
-									class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-							</div>
-							<h4 class="mb-3">3.12 $</h4>
-							<a href="#"
-								class="btn border border-secondary rounded-pill px-3 text-primary"><i
-								class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%} %>
+			<%
+			List<Products> BestSeller2 = (List<Products>) request.getAttribute("BestSeller2");
+			for (Products bestseller : BestSeller2) {
+			%>
 			<div class="col-md-6 col-lg-6 col-xl-3">
 				<div class="text-center">
-					<img src="public/img/fruit-item-1.png" class="img-fluid rounded"
-						alt="" />
+					<img src="public/img/<%=bestseller.getImg_prod() %>" class="img-fluid rounded"
+						alt="" style="height: 200px;"/>
 					<div class="py-4">
-						<a href="#" class="h5">Organic Tomato</a>
+						<a href="#" class="h5"><%=bestseller.getName_prod() %></a>
 						<div class="d-flex my-3 justify-content-center">
 							<i class="fas fa-star text-primary"></i> <i
 								class="fas fa-star text-primary"></i> <i
 								class="fas fa-star text-primary"></i> <i
 								class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
 						</div>
-						<h4 class="mb-3">3.12 $</h4>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+						<h4 class="mb-3"><%=bestseller.getCost() %> $</h4>
+						<button
+							onclick="showUp('<%=bestseller.getId()%>', '<%=bestseller.getName_prod()%>', '<%=bestseller.getDescription()%>', '<%=bestseller.getImg_prod()%>', '<%=bestseller.getCost()%>');"
+							type="button"
+							class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+							<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+							Cart
+						</button>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-6 col-xl-3">
-				<div class="text-center">
-					<img src="public/img/fruit-item-2.png" class="img-fluid rounded"
-						alt="" />
-					<div class="py-4">
-						<a href="#" class="h5">Organic Tomato</a>
-						<div class="d-flex my-3 justify-content-center">
-							<i class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-						</div>
-						<h4 class="mb-3">3.12 $</h4>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-6 col-xl-3">
-				<div class="text-center">
-					<img src="public/img/fruit-item-3.png" class="img-fluid rounded"
-						alt="" />
-					<div class="py-4">
-						<a href="#" class="h5">Organic Tomato</a>
-						<div class="d-flex my-3 justify-content-center">
-							<i class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-						</div>
-						<h4 class="mb-3">3.12 $</h4>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-6 col-xl-3">
-				<div class="text-center">
-					<img src="public/img/fruit-item-4.png" class="img-fluid rounded"
-						alt="" />
-					<div class="py-2">
-						<a href="#" class="h5">Organic Tomato</a>
-						<div class="d-flex my-3 justify-content-center">
-							<i class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i
-								class="fas fa-star text-primary"></i> <i class="fas fa-star"></i>
-						</div>
-						<h4 class="mb-3">3.12 $</h4>
-						<a href="#"
-							class="btn border border-secondary rounded-pill px-3 text-primary"><i
-							class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-					</div>
-				</div>
-			</div>
+			<%} %>
 		</div>
 	</div>
 </div>

@@ -38,7 +38,57 @@ public class GetProduct {
 		}
 		return productList;
 	}
+	public static List<Products> getProductsQuantityBought1(){
+		List<Products> productList = new ArrayList<>();
+		connection = db.dbConnection.createConnection();
+		String sql = "SELECT * FROM productions ORDER BY quantity_bought DESC LIMIT 6";
+        try {
+			preparedStatement = connection.prepareStatement(sql);
+			rs = preparedStatement.executeQuery(sql);
 
+            // Lặp qua kết quả và tạo các đối tượng sản phẩm từ dữ liệu
+            while (rs.next()) {
+                int productId = rs.getInt("id");
+                String productName = rs.getString("name_prod");
+                String productImage = rs.getString("img_prod");
+                String cost = rs.getString("cost");
+                String description = rs.getString("description");
+                String type = rs.getString("type");
+                String species = rs.getString("species");
+                Products product = new Products(productId, productName, productImage, description, cost, type, species);
+                productList.add(product);
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productList;
+	}
+	public static List<Products> getProductsQuantityBought2(){
+		List<Products> productList = new ArrayList<>();
+		connection = db.dbConnection.createConnection();
+		String sql = "SELECT * FROM productions ORDER BY quantity_bought DESC LIMIT 4 OFFSET 6";
+
+        try {
+			preparedStatement = connection.prepareStatement(sql);
+			rs = preparedStatement.executeQuery(sql);
+
+            // Lặp qua kết quả và tạo các đối tượng sản phẩm từ dữ liệu
+            while (rs.next()) {
+                int productId = rs.getInt("id");
+                String productName = rs.getString("name_prod");
+                String productImage = rs.getString("img_prod");
+                String cost = rs.getString("cost");
+                String description = rs.getString("description");
+                String type = rs.getString("type");
+                String species = rs.getString("species");
+                Products product = new Products(productId, productName, productImage, description, cost, type, species);
+                productList.add(product);
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productList;
+	}
 	public static List<Products> getFruit() {
 		List<Products> List = new ArrayList<>();
 		Connection conn = null;
