@@ -154,7 +154,7 @@ function cal_total(){
 		let price= check.closest('tr').querySelector(".priceVar")
 		console.log(price)
 		subTotal +=parseFloat(price.innerText)
-		document.querySelector(".sub-total").innerText= subTotal
+		document.querySelector(".sub-total").innerText= subTotal.toFixed(2)
 		let ship = parseFloat(document.querySelector(".ship-fee").innerText)
 		console.log(ship)
 		document.querySelector(".total").innerText = (subTotal + ship).toFixed(2)
@@ -182,6 +182,7 @@ function minus(e,button, productId) {
 			console.log("xóa")
 			deleteRow(productId);
 		}
+		cal_total()
     }
 
     function plus(button,productId) {
@@ -191,6 +192,7 @@ function minus(e,button, productId) {
         button.closest('tr').querySelector('input[name="quantity"]').value =input.getAttribute('value')
         input.value = parseInt(input.value) + 1;
         updateTotal(button,productId);
+        cal_total()
     }
 
     function change(event, input,productId) {
