@@ -62,7 +62,7 @@
           <div class="top-info ps-2">
             <small class="me-3"
               ><i class="fas fa-map-marker-alt me-2 text-secondary"></i>
-              <a href="https://maps.app.goo.gl/9qs1wayHcHpCBxGr9" target="_blank" class="text-white">Z115 Street Quyet Thang, Thai Nguyen</a></small
+              <a href="https://www.google.com/maps/place/Ktx+h%E1%BA%A3i+khang/@21.5913593,105.8019691,17z/data=!3m1!4b1!4m6!3m5!1s0x313527078c570b41:0x6842405295b2424!8m2!3d21.5913593!4d105.8019691!16s%2Fg%2F11qprf1cjq?entry=ttu" target="_blank" class="text-white">Z115 Street Quyet Thang, Thai Nguyen</a></small
             >
             <small class="me-3"
               ><i class="fas fa-envelope me-2 text-secondary"></i

@@ -1,6 +1,3 @@
-/**
- * 
- */
 var modal = document.querySelector(".overlay");
 var showPopupButtons = document.querySelectorAll(".showPopupButton");
 var closeButton = document.getElementsByClassName("close")[0];
@@ -10,37 +7,7 @@ var productNameElement = document.getElementById("productName");
 var productImageElement = document.getElementById("productImage");
 var productQuantityElement = document.getElementById("productQuantity");
 var quantityInput = document.getElementById("quantityInput");
-// Mở pop-up khi nhấn vào nút "Show Product Popup"
-/*showPopupButtons.forEach(function (button) {
-  button.onclick =showUp();
-});*/
-// Đóng pop-up khi nhấn vào nút đóng hoặc bên ngoài pop-up
-/*closeButton.onclick = function () {
-  modal.style.display = "none";
-};*/
 
-/*function plusValue(){
- const old_quan = document.getElementById("quant")
-	const newQuantity = parseInt(old_quan.value, 10) + 1
-
-update(newQuantity)
-}
-function minusValue(){
-const old_quan = document.getElementById("quant")
-const newQuantity = parseInt(old_quan.value, 10) - 1
-
-update(newQuantity)
-}
-function update(newQuantity){
-	const old_quan = document.getElementById("quant")
-	sessionStorage.setItem('quantity', newQuantity)
-	old_quan.value = newQuantity
-	old_quan.setAttribute('value', newQuantity);
-	var uid = document.querySelector("#product-uid").innerText;
-	var form = document.getElementById("addToCart");
-	form.action =`AddToCartController?idproduct=${uid}&quantity=${old_quan.value}`;
-}
-*/
 function changeValue(e){
 	let input = document.getElementById('quant')
 	let currentValue = input.value;
@@ -160,38 +127,68 @@ if(cancelButton){
 	};
 	
 }
+
+
 let prices = document.querySelectorAll(".priceVar");
 prices.forEach(function(price){
 	price.innerText = parseFloat(price.innerText).toFixed(2)
 })
+const lbls = document.querySelectorAll('.cbx');
+
+lbls.forEach((lbl, index) => {
+    lbl.addEventListener('click', () => {
+        let checkbox = lbl.previousElementSibling;
+        console.log(checkbox);
+        if (checkbox.checked === true) {
+            checkbox.checked = false;
+        } else {
+            checkbox.checked = true;
+        }
+        cal_total()
+    });
+});
+function cal_total(){
+	let checks = document.querySelectorAll("input.input-checkbox:checked");
+	let subTotal = 0
+	checks.forEach((check)=>{
+		let price= check.closest('tr').querySelector(".priceVar")
+		console.log(price)
+		subTotal +=parseFloat(price.innerText)
+		document.querySelector(".sub-total").innerText= subTotal
+		let ship = parseFloat(document.querySelector(".ship-fee").innerText)
+		console.log(ship)
+		document.querySelector(".total").innerText = (subTotal + ship).toFixed(2)
+	})
+}
+cal_total();
 function minus(e,button, productId) {
-        var input = button.closest('tr').querySelector('input');
+        var input = button.closest('tr').querySelector('input[name="quantity"]');
         if (parseInt(input.getAttribute('value')) >1) {
-        var input = button.closest('tr').querySelector('input');
+        var input = button.closest('tr').querySelector('input[name="quantity"]');
         //giữ nguyên giá trị
         input.setAttribute('value',parseInt(input.value))
-        button.closest('tr').querySelector('input').value =input.getAttribute('value')
+        button.closest('tr').querySelector('input[name="quantity"]').value =input.getAttribute('value')
         console.log(input.value)
         //giảm
         input.setAttribute('value',parseInt(input.value)-1)
-        button.closest('tr').querySelector('input').value = input.value
+        button.closest('tr').querySelector('input[name="quantity"]').value = input.value
         console.log(input.value)
         input.value = parseInt(input.value);
         updateTotal(button,productId);
         }else{
 			e.preventDefault();
 			input.setAttribute('value',1)
-			button.closest('tr').querySelector('input').value = 1;
+			button.closest('tr').querySelector('input[name="quantity"]').value = 1;
 			console.log("xóa")
 			deleteRow(productId);
 		}
     }
 
     function plus(button,productId) {
-        var input = button.closest('tr').querySelector('input');
+        var input = button.closest('tr').querySelector('input[name="quantity"]');
         input.setAttribute('value',parseInt(input.value)+1)
         console.log(input)
-        button.closest('tr').querySelector('input').value =input.getAttribute('value')
+        button.closest('tr').querySelector('input[name="quantity"]').value =input.getAttribute('value')
         input.value = parseInt(input.value) + 1;
         updateTotal(button,productId);
     }
@@ -206,7 +203,7 @@ function minus(e,button, productId) {
     }
 
     function updateTotal(button,productId) {
-		var input = button.closest('tr').querySelector('input');
+		var input = button.closest('tr').querySelector('input[name="quantity"]');
         var quantity = parseInt(input.getAttribute('value'));
         var price = parseFloat(input.closest('tr').querySelector('.price').innerText);
         var totalElement = input.closest('tr').querySelector('.priceVar');
@@ -232,16 +229,6 @@ function minus(e,button, productId) {
 			}
 });
     }
-
-// Xử lý sự kiện khi nhấn nút "Add"
-/*addButton.onclick = function () {
-  var quantity = parseInt(quantityInput.value);
-  // Thực hiện xử lý thêm sản phẩm vào giỏ hàng với số lượng được chọn
-  // Tùy theo logic ứng dụng của bạn
-  console.log("Thêm " + quantity + " sản phẩm vào giỏ hàng.");
-  modal.style.display = "none";
-};
-*/
 
 function deleteRow(productId){
 			document.addEventListener('click', function(event) {
