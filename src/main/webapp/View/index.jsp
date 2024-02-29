@@ -522,15 +522,17 @@
 			<div
 				class="border border-primary rounded position-relative vesitable-item">
 				<div class="vesitable-img">
-					<img src="public/img/<%=vegetable.getImg_prod()%>"
+					<a href="Detail_Product?id=<%=vegetable.getId()%>"><img  
+					src="public/img/<%=vegetable.getImg_prod()%>"
 						class="img-fluid w-100 rounded-top" alt=""
-						style="width: 80px; height: 250px;" />
+						style="width: 80px; height: 250px;" /></a>
+						
 				</div>
 				<div
 					class="text-white bg-primary px-3 py-1 rounded position-absolute"
-					style="top: 10px; right: 10px">Vegetable</div>
+					style="top: 10px; right: 10px"><%=vegetable.getType()%></div>
 				<div class="p-4 rounded-bottom">
-					<h4><%=vegetable.getName_prod()%></h4>
+					<a href="Detail_Product?id=<%=vegetable.getId()%>"><h4><%=vegetable.getName_prod()%></h4></a>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed
 						do eiusmod te incididunt</p>
 					<div class="d-flex justify-content-between flex-lg-wrap">
@@ -608,11 +610,11 @@
 				<div class="p-4 rounded bg-light">
 					<div class="row align-items-center">
 						<div class="col-6">
-							<img src="public/img/<%=bestseller.getImg_prod() %>"
-								class="img-fluid rounded-circle w-100" alt="" style="height: 155px;"/>
+								<a href="Detail_Product?id=<%=bestseller.getId()%>"><img src="public/img/<%=bestseller.getImg_prod() %>"
+								class="img-fluid rounded-circle w-100" alt="" style="height: 155px;"/></a>
 						</div>
 						<div class="col-6">
-							<a href="#" class="h5"><%=bestseller.getName_prod() %></a>
+							<a href="Detail_Product?id=<%=bestseller.getId()%>" class="h5"><%=bestseller.getName_prod() %></a>
 							<div class="d-flex my-3">
 								<i class="fas fa-star text-primary"></i> <i
 									class="fas fa-star text-primary"></i> <i
@@ -639,10 +641,10 @@
 			%>
 			<div class="col-md-6 col-lg-6 col-xl-3">
 				<div class="text-center">
-					<img src="public/img/<%=bestseller.getImg_prod() %>" class="img-fluid rounded"
-						alt="" style="height: 200px;"/>
+					<a href="Detail_Product?id=<%=bestseller.getId()%>"><img href="Detail_Product?id=<%=bestseller.getId()%>" src="public/img/<%=bestseller.getImg_prod() %>" class="img-fluid rounded"
+						alt="" style="height: 200px;"/></a>
 					<div class="py-4">
-						<a href="#" class="h5"><%=bestseller.getName_prod() %></a>
+						<a href="Detail_Product?id=<%=bestseller.getId()%>" class="h5"><%=bestseller.getName_prod() %></a>
 						<div class="d-flex my-3 justify-content-center">
 							<i class="fas fa-star text-primary"></i> <i
 								class="fas fa-star text-primary"></i> <i
