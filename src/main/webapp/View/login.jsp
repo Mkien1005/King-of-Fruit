@@ -130,15 +130,6 @@
 			xhr.send("username=" + encodeURIComponent(username) + "&password="
 					+ encodeURIComponent(password));
 		})
-
-		function showBootstrapToast(message) {
-			// Sử dụng toast message của Bootstrap
-			$('.toast').toast({
-				autohide : false
-			});
-			$('.toast-body').text(message);
-			$('.toast').toast('show');
-		}
 	</script>
 	
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

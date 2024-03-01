@@ -98,7 +98,7 @@
 									<i class="fa fa-minus"></i>
 								</button>
 								<input onkeyup="change(event, this,<%=products.getProduct().getId() %>)" type="text" id="quant"
-									name="quantity"
+									name="quantity" readonly
 									class="form-control form-control-sm text-center border-0"
 									value="<%=products.getQuantity()%>">
 								<button onclick="plus(this,<%=products.getProduct().getId() %>)"

@@ -162,75 +162,72 @@ function cal_total(){
 }
 cal_total();
 function minus(e,button, productId) {
-        var input = button.closest('tr').querySelector('input[name="quantity"]');
-        if (parseInt(input.getAttribute('value')) >1) {
-        var input = button.closest('tr').querySelector('input[name="quantity"]');
-        //giữ nguyên giá trị
-        input.setAttribute('value',parseInt(input.value))
-        button.closest('tr').querySelector('input[name="quantity"]').value =input.getAttribute('value')
-        console.log(input.value)
-        //giảm
-        input.setAttribute('value',parseInt(input.value)-1)
-        button.closest('tr').querySelector('input[name="quantity"]').value = input.value
-        console.log(input.value)
-        input.value = parseInt(input.value);
-        updateTotal(button,productId);
-        }else{
-			e.preventDefault();
-			input.setAttribute('value',1)
-			button.closest('tr').querySelector('input[name="quantity"]').value = 1;
-			console.log("xóa")
-			deleteRow(productId);
+    var input = button.closest('tr').querySelector('input[name="quantity"]');
+    if (parseInt(input.getAttribute('value')) >1) {
+    var input = button.closest('tr').querySelector('input[name="quantity"]');
+    //giữ nguyên giá trị
+    input.setAttribute('value',parseInt(input.value))
+    button.closest('tr').querySelector('input[name="quantity"]').value =input.getAttribute('value')
+    console.log(input.value)
+    //giảm
+    input.setAttribute('value',parseInt(input.value)-1)
+    button.closest('tr').querySelector('input[name="quantity"]').value = input.value
+    console.log(input.value)
+    input.value = parseInt(input.value);
+    updateTotal(button,productId);
+    }else{
+		e.preventDefault();
+		input.setAttribute('value',1)
+		button.closest('tr').querySelector('input[name="quantity"]').value = 1;
+		console.log("xóa")
+		deleteRow(productId);
+	}
+	cal_total()
+}
+
+function plus(button,productId) {
+    var input = button.closest('tr').querySelector('input[name="quantity"]');
+    input.setAttribute('value',parseInt(input.value)+1)
+    console.log(input)
+    button.closest('tr').querySelector('input[name="quantity"]').value =input.getAttribute('value')
+    input.value = parseInt(input.value) + 1;
+    updateTotal(button,productId);
+    cal_total()
+}
+
+function change(event, input,productId) {
+    var value = parseInt(input.value);
+    if (isNaN(value) || value <= 0) {
+        input.value = 1;
+        value = 1;
+    }
+    updateTotal(input,productId);
+}
+
+function updateTotal(button,productId) {
+	var input = button.closest('tr').querySelector('input[name="quantity"]');
+    var quantity = parseInt(input.getAttribute('value'));
+    var price = parseFloat(input.closest('tr').querySelector('.price').innerText);
+    var totalElement = input.closest('tr').querySelector('.priceVar');
+    var total = quantity * price;
+    totalElement.innerText = total.toFixed(2)
+    productId = parseInt(productId)
+	$.ajax({
+		url: '/re-java-web/updateProduct?productId='+productId+'&quantity='+quantity, // Đường dẫn tới Servlet
+		method: 'POST', // Phương thức HTTP
+		data: {
+			idproduct: productId,
+			quantity: quantity
+		},
+		success: function(response) {
+			// Xử lý phản hồi thành công
+		},
+		error: function(xhr, status, error) {
+			x// Xử lý lỗi
+			console.error(xhr.responseText);
 		}
-		cal_total()
-    }
-
-    function plus(button,productId) {
-        var input = button.closest('tr').querySelector('input[name="quantity"]');
-        input.setAttribute('value',parseInt(input.value)+1)
-        console.log(input)
-        button.closest('tr').querySelector('input[name="quantity"]').value =input.getAttribute('value')
-        input.value = parseInt(input.value) + 1;
-        updateTotal(button,productId);
-        cal_total()
-    }
-
-    function change(event, input,productId) {
-        var value = parseInt(input.value);
-        if (isNaN(value) || value <= 0) {
-            input.value = 1;
-            value = 1;
-        }
-        updateTotal(input,productId);
-    }
-
-    function updateTotal(button,productId) {
-		var input = button.closest('tr').querySelector('input[name="quantity"]');
-        var quantity = parseInt(input.getAttribute('value'));
-        var price = parseFloat(input.closest('tr').querySelector('.price').innerText);
-        var totalElement = input.closest('tr').querySelector('.priceVar');
-        var total = quantity * price;
-        totalElement.innerText = total.toFixed(2);
-        var xhr = new XMLHttpRequest()
-        productId = parseInt(productId)
-		$.ajax({
-			url: '/re-java-web/updateProduct?productId='+productId+'&quantity='+quantity, // Đường dẫn tới Servlet
-			method: 'POST', // Phương thức HTTP
-			data: {
-				idproduct: productId,
-				quantity: quantity
-			},
-			success: function(response) {
-				// Xử lý phản hồi thành công
-				console.log(response);
-				console.log(quantity)
-			},
-			error: function(xhr, status, error) {
-				// Xử lý lỗi
-				console.error(xhr.responseText);
-			}
-});
-    }
+	});
+}
 
 function deleteRow(productId){
 			document.addEventListener('click', function(event) {

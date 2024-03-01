@@ -135,7 +135,8 @@
               </div>
               <a href="contact.jsp" class="nav-item nav-link">Contact</a>
             </div>
-            <div class="d-flex m-3 me-0">
+            <div class="d-flex m-3 me-0 parentSearch">
+            <input type="text" class="search-bar" placeholder="Search.." name="search">
               <button
                 class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
                 data-bs-toggle="modal"
@@ -154,6 +155,11 @@
               <a href="#" class="my-auto">
                 <i class="fas fa-user fa-2x"></i>
               </a>
+              <ul id="searchResults">
+              	<li>alsc</li>
+              	<li>alasasc</li>
+              	<li>alsdsdwc</li>
+              </ul>
             </div>
           </div>
         </nav>
@@ -162,7 +168,7 @@
     <!-- Navbar End -->
 
     <!-- Modal Search Start -->
-    <div
+    <!-- <div
       class="modal fade"
       id="searchModal"
       tabindex="-1"
@@ -183,7 +189,7 @@
             ></button>
           </div>
           <div class="modal-body d-flex align-items-center">
-            <div class="input-group w-75 mx-auto d-flex">
+            <div class="input-group w-75 mx-auto d-flex" style="bottom: 250px">
               <input
                 type="search"
                 class="form-control p-3"
@@ -197,5 +203,5 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>	 -->
     <!-- Modal Search End -->
