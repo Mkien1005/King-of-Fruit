@@ -46,7 +46,7 @@ public class Register extends HttpServlet {
 			/* response.sendRedirect("indexForward"); */
 	        request.setAttribute("success", "Register Success!");
 		}else if(check1 =="Email" || check1 == "Username"){
-			response.getWriter().write(check1);
+			response.getWriter().write(check1); 
 		}
 	}
 

@@ -38,7 +38,7 @@ function Validation(option) {
       //Trường hợp invalid với form submit
       // else {
       //   formElement.submit();
-      // }
+      // } 
     };
   }*/
   option.rules.forEach(function (rule) {

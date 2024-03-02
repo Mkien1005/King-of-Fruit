@@ -127,14 +127,13 @@
 			if(fullname == '' || username =='' || password =='' || phone =='' ||email ==''){
 				return;
 			}
-			let user = {
+			let user = { 
 					fullname: fullname,
 					username: username,
 					password: password,
 					phone: phone,
 					email: email
 			}
-			console.log(user)
 			$.ajax({
 	            url: "/re-java-web/Register", // Đường dẫn tới tập tin xử lý trên máy chủ
 	            method: "POST", // Phương thức yêu cầu
