@@ -32,8 +32,8 @@ public class CartDirector extends HttpServlet {
 			throws ServletException, IOException 
 	{
 		HttpSession session = request.getSession();
-	    String username = (String) session.getAttribute("username");
-	    if(username != null) {
+	    Integer id = (Integer) session.getAttribute("id_user");
+	    if(id != null) {
 	    	Connection conn = null;
 	        PreparedStatement pstmt = null;
 	        ResultSet rs = null;
@@ -49,8 +49,8 @@ public class CartDirector extends HttpServlet {
 	                    "FROM productions p " +
 	                    "INNER JOIN cart c ON p.id = c.id_product " +
 	                    "INNER JOIN users u ON c.id_user = u.id " +
-	                    "WHERE u.username = ? ORDER BY c.id DESC");
-	            pstmt.setString(1, username);
+	                    "WHERE u.id = ? ORDER BY c.id DESC");
+	            pstmt.setInt(1, id);
 	            rs = pstmt.executeQuery();
 
 	            // Lặp qua kết quả truy vấn và tạo các đối tượng Product
@@ -79,10 +79,6 @@ public class CartDirector extends HttpServlet {
 	    	response.sendRedirect("View/login.jsp");
 	    }
 	    
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

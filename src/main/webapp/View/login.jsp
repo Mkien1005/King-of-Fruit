@@ -96,6 +96,10 @@
 			e.preventDefault()
 			var username = document.querySelector("#username").value;
 			var password = document.querySelector("#password-field").value;
+			if(username.length>30){
+				alert("Username invalid!");
+				return
+			}
 			var xhr = new XMLHttpRequest();
 			xhr.open("POST", "../controller/Login", true);
 			xhr.setRequestHeader("Content-Type",

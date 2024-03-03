@@ -53,6 +53,7 @@ public class indexForward extends HttpServlet {
 				Products product = new Products(productId, productName, productImage, description, cost, type, species);
 				productList.add(product);
 			}
+			List<String> name_product_List = dao.GetProduct.getAllNameProduct();
 			List<Products> VegetablesList = dao.GetProduct.getVegetable();
 			List<Products> FruitList = dao.GetProduct.getFruit();
 			List<Products> BreadList = dao.GetProduct.getBread();
@@ -66,6 +67,7 @@ public class indexForward extends HttpServlet {
 			request.setAttribute("MeatList", MeatList);
 			request.setAttribute("BestSeller1", BestSellerList1);
 			request.setAttribute("BestSeller2", BestSellerList2);
+			request.setAttribute("name_product_List", name_product_List);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/View/index.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

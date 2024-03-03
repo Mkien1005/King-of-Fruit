@@ -136,7 +136,7 @@
               <a href="contact.jsp" class="nav-item nav-link">Contact</a>
             </div>
             <div class="d-flex m-3 me-0 parentSearch">
-            <input type="text" class="search-bar" placeholder="Search.." name="search">
+            <input type="text" id="searchInput" oninput="searchProducts()" class="search-bar" placeholder="Search.." name="search">
               <button
                 class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
                 data-bs-toggle="modal"
@@ -156,9 +156,6 @@
                 <i class="fas fa-user fa-2x"></i>
               </a>
               <ul id="searchResults">
-              	<li>alsc</li>
-              	<li>alasasc</li>
-              	<li>alsdsdwc</li>
               </ul>
             </div>
           </div>
@@ -205,3 +202,75 @@
       </div>
     </div>	 -->
     <!-- Modal Search End -->
+<script>
+	var name_product_List = '<%= request.getAttribute("name_product_List") %>';
+	name_product_List = name_product_List.replace(/([^,\[\]]+)/g, '"$1"');
+	name_product_List = JSON.parse(name_product_List);
+	for (var i = 0; i < name_product_List.length; i++) {
+		name_product_List[i] = name_product_List[i].trim();
+	}
+	function searchProducts(){
+		var searchValue = document.getElementById("searchInput").value.toLowerCase();
+		var searchResults = document.getElementById("searchResults");
+		searchResults.innerHTML = "";
+		var count=0;
+		name_product_List.forEach((product)=>{
+			if(count<5){
+				var productName = product.toLowerCase();
+				if(productName.includes(searchValue)){
+					var li = document.createElement('li');
+					var link = document.createElement('a');
+					pro = '?keyword='+encodeURIComponent(product)
+					// Đặt href cho thẻ a
+					link.href = 'shopDirector'+pro;
+					//Thêm class thẻ a
+					link.classList.add("shopKeyword")
+					// Thêm nội dung vào thẻ a
+					link.textContent = product;
+					// Thêm thẻ a vào trong thẻ li
+					li.appendChild(link);
+					searchResults.appendChild(li);
+				}
+				count++;
+			}else{
+				return;
+			}
+		})
+		if (searchResults.childElementCount == 0) {
+			var li = document.createElement('li');
+			var link = document.createElement('a');
+			pro = '?keyword='+encodeURIComponent(searchValue)
+			// Đặt href cho thẻ a
+			link.href = 'shopDirector'+pro;
+			//Thêm class thẻ a
+			link.classList.add("shopKeyword")
+			// Thêm nội dung vào thẻ a
+			link.textContent = "Tìm kiếm sản phẩm với từ khóa:" + searchValue;
+			// Thêm thẻ a vào trong thẻ li
+			li.appendChild(link);
+			searchResults.appendChild(li);
+  		}
+	}
+	let search_bar = document.querySelector("#searchInput");
+	var searchResult = document.getElementById("searchResults");
+	search_bar.addEventListener("focus", function () {
+	  console.log("focus");
+	  searchResult.style.display = "block";
+	});
+	search_bar.addEventListener('blur', function() {
+	    // Nếu không tập trung vào searchInput và cũng không tập trung vào searchResult, ẩn kết quả
+		document.addEventListener('click', function(event) {
+		    // Lấy phần tử mà người dùng đã nhấp chuột vào
+		    var clickedElement = event.target;
+		    if(clickedElement!= searchResult && clickedElement != search_bar){
+		    	searchResult.style.display = "none";
+		    }
+		});
+	});
+	
+</script>
+
+
+
+
+

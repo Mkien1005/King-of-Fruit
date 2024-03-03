@@ -6,6 +6,60 @@
 		<%@ include file="head.jsp" %>
 		<%@ page import="bean.Products"%>
 		<%@ page import="java.util.List"%>
+		
+		<div class="overlay">
+	<section class="product">
+		<div class="product-photo">
+			<div class="photo-container">
+				<div class="photo-main">
+					<div class="controls">
+						<i class="fa-solid fa-share"></i> <i class="fa-regular fa-heart"></i>
+					</div>
+					<img class="imgOverlay"
+						src="https://codetheworld.io/wp-content/uploads/2023/11/green-apple-with-slice.png"
+						alt="green apple slice" />
+				</div>
+			</div>
+		</div>
+		<div class="product-info">
+			<div class="title">
+				<h1 class="name_product_overlay"></h1>
+				<span class="product_id"></span> <span style="display: none;"
+					id="product-uid"></span>
+			</div>
+			<div class="input-group quantity mt-4" style="width: 100px;">
+				<div class="input-group-btn">
+					<button onclick="minusValue()"
+						class="btn minus btn-sm rounded-circle bg-light border">
+						<i class="fa fa-minus"></i>
+					</button>
+				</div>
+				<input onkeyup="changeValue(event)" type="text" id="quant"
+					name="quantity"
+					class="form-control form-control-sm text-center border-0 quantityCart"
+					value="1">
+				<div class="input-group-btn">
+					<button onclick="plusValue()"
+						class="btn plus btn-sm rounded-circle bg-light border">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="price">
+				$<span class="priceVar"></span>
+			</div>
+			<div class="description">
+				<h3>Description</h3>
+				<p class="desc"></p>
+			</div>
+			<form id="addToCart" method="POST">
+				<button class="buy-btn">ADD TO CART</button>
+			</form>
+			<button class="cancel-btn">CANCEL</button>
+		</div>
+	</section>
+</div>
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
             <h1 class="text-center text-white display-6">Shop</h1>
@@ -192,6 +246,11 @@
                             <div class="col-lg-9">
                                 <div class="row g-4 justify-content-center">
                                 <% 
+                                if(request.getAttribute("msg") != null){
+                                	%>
+                                	<p> <%=request.getAttribute("msg") %></p>
+                                	<%
+                                }
             					List<Products> pageData = (List<Products>) request.getAttribute("pageData");
             					for (Products data : pageData) {
         							%>
@@ -207,8 +266,13 @@
                                                 <p><%=data.getDescription() %></p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <p class="text-dark fs-5 fw-bold mb-0">$<%=data.getCost() %> / kg</p>
-                                                    <a href="AddToCartController" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                    <button
+													onclick="showUp('<%=data.getId()%>', '<%=data.getName_prod()%>', '<%=data.getDescription()%>', '<%=data.getImg_prod()%>', '<%=data.getCost()%>');"
+													type="button"
+													class="btn border border-secondary rounded-pill px-3 text-primary showPopupButton">
+													<i class="fa fa-shopping-bag me-2 text-primary"></i> Add to
+													Cart
+												</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -243,7 +307,7 @@
             </div>
         </div>
         <!-- Fruits Shop End-->
-
+	<script src="public/js/addCartOverLay.js"></script>
 		<%@ include file="end.html" %>
     </body>
 

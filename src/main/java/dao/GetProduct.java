@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import bean.Products;
@@ -218,5 +219,48 @@ public class GetProduct {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static ArrayList<String> getAllNameProduct() {
+		connection = db.dbConnection.createConnection();
+        ArrayList<String> productNames = new ArrayList<>();
+        String query = "SELECT name_prod FROM productions"; // Giả sử bảng sản phẩm có cột 'name'
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String productName = resultSet.getString("name_prod");
+                productNames.add(productName);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productNames;
+	}
+	public static List<Products> getProductsByKeyword(String keyword) {
+		ArrayList<Products> products = new ArrayList<>();
+        try {
+        	connection = db.dbConnection.createConnection();
+        	preparedStatement = connection.prepareStatement("Select * From productions where name_prod=?");
+        	preparedStatement.setString(1, keyword);
+            rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+				int productId = rs.getInt("id");
+            	String productName = rs.getString("name_prod");
+				String productImage = rs.getString("img_prod");
+				String cost = rs.getString("cost");
+				String description = rs.getString("description");
+				String type = rs.getString("type");
+				String species = rs.getString("species");
+				Products product = new Products(productId, productName, productImage, description, cost, type, species);
+                products.add(product);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
 	}
 }

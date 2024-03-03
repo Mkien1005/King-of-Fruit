@@ -3,6 +3,6 @@
   <display-name>re-java-web</display-name>
   <welcome-file-list>
     <welcome-file>indexForward</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>View/index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
