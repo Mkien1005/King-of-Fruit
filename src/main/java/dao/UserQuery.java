@@ -1,7 +1,10 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import bean.Products;
 import bean.users;
 
 public class UserQuery {
@@ -94,5 +97,38 @@ public class UserQuery {
 		}
 
 		return userId;
+	}
+	public static List<users> getAllProducts(){
+		List<users> userList = new ArrayList<>();
+		Connection connection = db.dbConnection.createConnection();
+		String sql = "SELECT * FROM users";
+        try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			ResultSet rs = preparedStatement.executeQuery(sql);
+
+            // Lặp qua kết quả và tạo các đối tượng sản phẩm từ dữ liệu
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String fullName = rs.getString("fullName");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String address = rs.getString("address");
+                users user = new users();
+                user.setId(id);
+        		user.setUsername(username);
+        		user.setFullName(fullName);
+        		user.setEmail(email);
+        		user.setPhone(phone);
+        		user.setAddress(address);
+        		user.setPassword("");
+        		user.setAddress("");
+                userList.add(user);
+                
+            }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userList;
 	}
 }

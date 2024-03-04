@@ -8,6 +8,7 @@ public class users {
 	private String email;
 	private String phone;
 	private String address;
+
 	public int getId() {
 		return id;
 	}

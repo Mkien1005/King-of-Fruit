@@ -236,6 +236,7 @@
 				return;
 			}
 		})
+		count=0;
 		if (searchResults.childElementCount == 0) {
 			var li = document.createElement('li');
 			var link = document.createElement('a');

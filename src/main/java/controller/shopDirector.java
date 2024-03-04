@@ -45,13 +45,14 @@ public class shopDirector extends HttpServlet {
 			RequestDispatcher dp = request.getRequestDispatcher("/View/shop.jsp");
 			dp.forward(request, response);
 		}else {
+			String like_keyword = "%"+keyword+"%";
 			String check = request.getParameter("page");
 			int page = 1;
 			if(check != null) {
 				page = Integer.parseInt(check);
 			}
 			int itemsPerPage = 9;
-			List<Products> dataList = dao.GetProduct.getProductsByKeyword(keyword);
+			List<Products> dataList = dao.GetProduct.getProductsByKeyword(like_keyword);
 			if(dataList.isEmpty()) {
 				request.setAttribute("msg", "No product has key word: "+ keyword);
 			}

@@ -153,6 +153,14 @@ let btn = document.querySelector("#register");
 					});
 				return
 			}
+			if(password.length<8){
+				Swal.fire({
+					  icon: "error",
+					  title: "Oops...",
+					  text: "Minimum length for password is 8!"
+					});
+				return
+			}
 			if(!check_regex.test(password)){
 				Swal.fire({
 					  icon: "error",

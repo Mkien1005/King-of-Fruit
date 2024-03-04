@@ -31,7 +31,11 @@ public class GetProduct {
                 String description = rs.getString("description");
                 String type = rs.getString("type");
                 String species = rs.getString("species");
+                String quantity_bought = rs.getString("quantity_bought");
+                String quantity_stock = rs.getString("quantity_stock");
                 Products product = new Products(productId, productName, productImage, description, cost, type, species);
+                product.setQuantity_bought(quantity_bought);
+                product.setQuantity_stock(quantity_stock);
                 productList.add(product);
             }
 		} catch (SQLException e) {
@@ -56,7 +60,11 @@ public class GetProduct {
                 String description = rs.getString("description");
                 String type = rs.getString("type");
                 String species = rs.getString("species");
+                String quantity_bought = rs.getString("quantity_bought");
+                String quantity_stock = rs.getString("quantity_stock");
                 Products product = new Products(productId, productName, productImage, description, cost, type, species);
+                product.setQuantity_bought(quantity_bought);
+                product.setQuantity_stock(quantity_stock);
                 productList.add(product);
             }
 		} catch (SQLException e) {
@@ -243,7 +251,7 @@ public class GetProduct {
 		ArrayList<Products> products = new ArrayList<>();
         try {
         	connection = db.dbConnection.createConnection();
-        	preparedStatement = connection.prepareStatement("Select * From productions where name_prod=?");
+        	preparedStatement = connection.prepareStatement("Select * From productions where name_prod like ?");
         	preparedStatement.setString(1, keyword);
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
