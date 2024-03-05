@@ -64,149 +64,175 @@
     Chart.defaults.borderColor = "#000000";
 
 
-    // Worldwide Sales Chart
-    var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
-    var myChart1 = new Chart(ctx1, {
-        type: "bar",
-        data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-            datasets: [{
-                    label: "USA",
-                    data: [15, 30, 55, 65, 60, 80, 95],
-                    backgroundColor: "rgba(235, 22, 22, .7)"
-                },
-                {
-                    label: "UK",
-                    data: [8, 35, 40, 60, 70, 55, 75],
-                    backgroundColor: "rgba(235, 22, 22, .5)"
-                },
-                {
-                    label: "AU",
-                    data: [12, 25, 45, 55, 65, 70, 60],
-                    backgroundColor: "rgba(235, 22, 22, .3)"
-                }
-            ]
-            },
-        options: {
-            responsive: true
-        }
-    });
 
-
-    // Salse & Revenue Chart
-    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
-    var myChart2 = new Chart(ctx2, {
-        type: "line",
-        data: {
-            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-            datasets: [{
-                    label: "Salse",
-                    data: [15, 30, 55, 45, 70, 65, 85],
-                    backgroundColor: "rgba(235, 22, 22, .7)",
-                    fill: true
-                },
-                {
-                    label: "Revenue",
-                    data: [99, 135, 170, 130, 190, 180, 270],
-                    backgroundColor: "rgba(235, 22, 22, .5)",
-                    fill: true
-                }
-            ]
-            },
-        options: {
-            responsive: true
-        }
-    });
-    
-
-
-    // Single Line Chart
-    var ctx3 = $("#line-chart").get(0).getContext("2d");
-    var myChart3 = new Chart(ctx3, {
-        type: "line",
-        data: {
-            labels: [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150],
-            datasets: [{
-                label: "Salse",
-                fill: false,
-                backgroundColor: "rgba(235, 22, 22, .7)",
-                data: [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-
-    // Single Bar Chart
-    var ctx4 = $("#bar-chart").get(0).getContext("2d");
-    var myChart4 = new Chart(ctx4, {
-        type: "bar",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(235, 22, 22, .7)",
-                    "rgba(235, 22, 22, .6)",
-                    "rgba(235, 22, 22, .5)",
-                    "rgba(235, 22, 22, .4)",
-                    "rgba(235, 22, 22, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-
-    // Pie Chart
-    var ctx5 = $("#pie-chart").get(0).getContext("2d");
-    var myChart5 = new Chart(ctx5, {
-        type: "pie",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(235, 22, 22, .7)",
-                    "rgba(235, 22, 22, .6)",
-                    "rgba(235, 22, 22, .5)",
-                    "rgba(235, 22, 22, .4)",
-                    "rgba(235, 22, 22, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-
-    // Doughnut Chart
-    var ctx6 = $("#doughnut-chart").get(0).getContext("2d");
-    var myChart6 = new Chart(ctx6, {
-        type: "doughnut",
-        data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
-            datasets: [{
-                backgroundColor: [
-                    "rgba(235, 22, 22, .7)",
-                    "rgba(235, 22, 22, .6)",
-                    "rgba(235, 22, 22, .5)",
-                    "rgba(235, 22, 22, .4)",
-                    "rgba(235, 22, 22, .3)"
-                ],
-                data: [55, 49, 44, 24, 15]
-            }]
-        },
-        options: {
-            responsive: true
-        }
-    });
-
-    
 })(jQuery);
+function editProduct(button, id) {
+	    var row = button.parentNode.parentNode;
+	    var cells = row.getElementsByTagName('td');
 
+	    // Kiểm tra xem hàng đã được chỉnh sửa hay không
+	    var isEditing = row.getAttribute('data-editing') === 'true';
+
+	    // Nếu đang chỉnh sửa, chuyển về trạng thái ban đầu
+	    if (isEditing) {
+	        cancelEdit(row, cells, id);
+	        return;
+	    }
+
+	    // Đánh dấu hàng đang chỉnh sửa
+	    row.setAttribute('data-editing', 'true');
+
+	    for (var i = 0; i < cells.length - 1; i++) {
+	        var cell = cells[i];
+	        var spans = cell.getElementsByTagName('span');
+
+	        // Kiểm tra nếu có ít nhất một phần tử <span> trong ô cell
+	        if (spans.length > 0) {
+	            var span = spans[0];
+	            var value = span.innerText;
+
+	            var input = document.createElement('input');
+	            input.type = 'text';
+	            input.value = value;
+				input.id = span.id
+	            // Lấy chiều rộng của thẻ cha
+	            var parentWidth = span.offsetWidth;
+
+	            // Đặt độ rộng của input bằng chiều rộng của thẻ cha
+	            input.style.width = parentWidth + 'px';
+
+	            span.innerHTML = '';
+	            span.appendChild(input);
+	        }
+	    }
+	}
+
+	function sendDataToServer(data) {
+		data = JSON.stringify(data);
+	    $.ajax({
+	        url: '/re-java-web/editProduct',
+	        type: 'POST',
+	        data: data,
+	        success: function(response) {
+	            console.log('Data sent successfully:', response);
+	            if(response == "success"){
+	            	Swal.fire({
+						  position: "center",
+						  icon: "success",
+						  title: "Success!",
+						  text: "Update Product Success"
+						});
+	            }else{
+	            	Swal.fire({
+						  icon: "error",
+						  title: "Oops...",
+						  text: "Update Product Failed!",
+						});
+	            }
+	        }
+	    });
+	}
+	
+function cancelEdit(row, cells, idP) {
+    row.removeAttribute('data-editing');
+    var newData = {};
+    // Đưa các ô về trạng thái ban đầu
+    for (var i = 0; i < cells.length - 1; i++) {
+        var cell = cells[i];
+        var spans = cell.getElementsByTagName('span');
+
+        if (spans.length > 0) {
+            var span = spans[0];
+            var value = span.getElementsByTagName('input')[0].value;
+            var input = span.getElementsByTagName('input')[0]
+            span.innerHTML = value;
+            if (input) {
+                newData[input.id] = value;
+            }
+        }
+    }
+    if(isNaN(newData["productCost"])){
+    	Swal.fire({
+			  icon: "error",
+			  title: "Oops...",
+			  text: "Cost field must be number!",
+			});
+    	return;
+    }
+    if(isNaN(newData["quantityBought"])){
+    	Swal.fire({
+			  icon: "error",
+			  title: "Oops...",
+			  text: "Quantity bought field must be number!",
+			});
+    	return;
+    }
+    if(isNaN(newData["quantityStock"])){
+    	Swal.fire({
+			  icon: "error",
+			  title: "Oops...",
+			  text: "Quantity Stock field must be number!",
+			});
+    	return;
+    }
+    newData["id"] = idP;
+    sendDataToServer(newData);
+}
+
+
+function deleteRow(productId){
+			document.addEventListener('click', function(event) {
+		        if (event.target.classList.contains('btn-danger') || event.target.classList.contains('fa-times')) {
+		          Swal.fire({
+				  title: "Are you sure?",
+				  text: "You won't be able to revert this!",
+				  icon: "warning",
+				  showCancelButton: true,
+				  confirmButtonColor: "#3085d6",
+				  cancelButtonColor: "#d33",
+				  confirmButtonText: "Yes, delete it!"
+				  }).then((result) => {
+					 
+				  	if (result.isConfirmed) {
+						var row = event.target.closest('tr');
+						if (row) {
+	                        //var productId = row.getAttribute('data-productId'); // Assuming you have a data attribute containing product ID
+	                        // Gửi yêu cầu AJAX để xóa sản phẩm
+	                        $.ajax({
+	                            url: "/re-java-web/removeProductAdmin", // Đường dẫn tới Servlet xử lý yêu cầu
+	                            method: "POST",
+	                            data: { productId: productId },
+	                            success: function(response) {
+	                                // Xử lý phản hồi từ Servlet (nếu cần)
+	                                console.log(response);
+	                                // Xóa dòng từ giao diện người dùng
+	                                row.remove();
+	                                // Hiển thị thông báo thành công
+	                                Swal.fire({
+	                                    title: "Deleted!",
+	                                    text: response,
+	                                    icon: "success"
+	                                });
+	                            },
+	                            error: function(xhr, status, error) {
+									   	Swal.fire({
+										  icon: "error",
+										  title: "Oops...",
+										  text: "No data found for deletion.",
+										});
+	                                console.error("Error:", error);
+	                            }
+	                        });
+	                    }
+				  	}else{
+						  var button = document.querySelector("button[data-productId='" + productId + "']")
+						  var targetElement = button.parentElement.parentNode.querySelector("#quant");
+						  console.log(targetElement)
+						  targetElement.value = 1;
+					  }
+				});
+		        }
+		    });
+			
+
+		}

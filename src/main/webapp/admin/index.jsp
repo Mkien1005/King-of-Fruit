@@ -318,7 +318,7 @@
 							<td><span class="value" id="quantityStock"><%=product.getQuantity_stock()%></span></td>
 							<td>
 								<button type="button" onclick="editProduct(this, <%=product.getId() %>)" class="btn btn-info rounded-pill"><i class="fa-regular fa-pen-to-square"></i></button>
-                        		<button type="button" class="btn btn-danger rounded-pill"><i class="fa fa-times"></i></button>
+                        		<button type="button" onclick="deleteRow(<%=product.getId()%>)" class="btn btn-danger rounded-pill"><i class="fa fa-times"></i></button>
 							</td>
 						</tr>
 				<%
@@ -334,97 +334,6 @@
       <!-- Content End -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script>
-	function editProduct(button, id) {
-	    var row = button.parentNode.parentNode;
-	    var cells = row.getElementsByTagName('td');
-
-	    // Kiểm tra xem hàng đã được chỉnh sửa hay không
-	    var isEditing = row.getAttribute('data-editing') === 'true';
-
-	    // Nếu đang chỉnh sửa, chuyển về trạng thái ban đầu
-	    if (isEditing) {
-	        cancelEdit(row, cells, id);
-	        return;
-	    }
-
-	    // Đánh dấu hàng đang chỉnh sửa
-	    row.setAttribute('data-editing', 'true');
-
-	    for (var i = 0; i < cells.length - 1; i++) {
-	        var cell = cells[i];
-	        var spans = cell.getElementsByTagName('span');
-
-	        // Kiểm tra nếu có ít nhất một phần tử <span> trong ô cell
-	        if (spans.length > 0) {
-	            var span = spans[0];
-	            var value = span.innerText;
-
-	            var input = document.createElement('input');
-	            input.type = 'text';
-	            input.value = value;
-				input.id = span.id
-	            // Lấy chiều rộng của thẻ cha
-	            var parentWidth = span.offsetWidth;
-
-	            // Đặt độ rộng của input bằng chiều rộng của thẻ cha
-	            input.style.width = parentWidth + 'px';
-
-	            span.innerHTML = '';
-	            span.appendChild(input);
-	        }
-	    }
-	}
-
-	function sendDataToServer(data) {
-		data = JSON.stringify(data);
-	    $.ajax({
-	        url: '/re-java-web/editProduct',
-	        type: 'POST',
-	        data: data,
-	        success: function(response) {
-	            console.log('Data sent successfully:', response);
-	            if(response == "success"){
-	            	Swal.fire({
-						  position: "center",
-						  icon: "success",
-						  title: "Success!",
-						  text: "Update Product Success"
-						});
-	            }else{
-	            	Swal.fire({
-						  icon: "error",
-						  title: "Oops...",
-						  text: "Update Product Failed!",
-						});
-	            }
-	        }
-	    });
-	}
-	
-	function cancelEdit(row, cells, idP) {
-	    row.removeAttribute('data-editing');
-	    var newData = {};
-	    // Đưa các ô về trạng thái ban đầu
-	    for (var i = 0; i < cells.length - 1; i++) {
-	        var cell = cells[i];
-	        var spans = cell.getElementsByTagName('span');
-
-	        if (spans.length > 0) {
-	            var span = spans[0];
-	            var value = span.getElementsByTagName('input')[0].value;
-	            var input = span.getElementsByTagName('input')[0]
-	            span.innerHTML = value;
-	            if (input) {
-	                newData[input.id] = value;
-	            }
-	        }
-	    }
-	    newData["id"] = idP;
-	    sendDataToServer(newData);
-	}
-	
-	</script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
