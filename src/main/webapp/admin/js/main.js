@@ -224,12 +224,7 @@ function deleteRow(productId){
 	                            }
 	                        });
 	                    }
-				  	}else{
-						  var button = document.querySelector("button[data-productId='" + productId + "']")
-						  var targetElement = button.parentElement.parentNode.querySelector("#quant");
-						  console.log(targetElement)
-						  targetElement.value = 1;
-					  }
+				  	}
 				});
 		        }
 		    });
