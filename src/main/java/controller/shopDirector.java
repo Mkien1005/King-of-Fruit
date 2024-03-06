@@ -41,7 +41,8 @@ public class shopDirector extends HttpServlet {
 			request.setAttribute("pageData", pageData);
 			request.setAttribute("totalPages", totalPages);
 			request.setAttribute("currentPage", page);
-			
+			List<String> name_product_List = dao.GetProduct.getAllNameProduct();
+            request.setAttribute("name_product_List", name_product_List);
 			RequestDispatcher dp = request.getRequestDispatcher("/View/shop.jsp");
 			dp.forward(request, response);
 		}else {

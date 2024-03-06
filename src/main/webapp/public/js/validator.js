@@ -179,7 +179,7 @@ let btn = document.querySelector("#register");
 			}
 			
 			$.ajax({
-	            url: "/re-java-web/Register", // Đường dẫn tới tập tin xử lý trên máy chủ
+	            url: "Register", // Đường dẫn tới tập tin xử lý trên máy chủ
 	            method: "POST", // Phương thức yêu cầu
 	            data: {
 					fullname: fullname,
@@ -205,7 +205,7 @@ let btn = document.querySelector("#register");
 							  text: "Register success"
 							});
 	                	setTimeout(function() {
-		                    window.location.href = "../indexForward";
+		                    window.location.href = "indexForward";
 		                }, 2000);
 	                }
 	            },

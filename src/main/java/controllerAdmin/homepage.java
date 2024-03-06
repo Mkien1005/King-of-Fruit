@@ -27,6 +27,7 @@ public class homepage extends HttpServlet {
 		request.setAttribute("numProduct", numProduct);
 		request.setAttribute("numUser", numUser);
 		request.setAttribute("productList", products);
+		request.setAttribute("info", "Dashboard");
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/index.jsp");
 		rd.forward(request, response);
 	}

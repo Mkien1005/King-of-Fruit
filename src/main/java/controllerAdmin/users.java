@@ -22,6 +22,7 @@ public class users extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<bean.users> users = dao.UserQuery.getAllProducts();
 		request.setAttribute("users", users);
+		request.setAttribute("info", "Users");
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/user.jsp");
 		rd.forward(request, response);
 	}

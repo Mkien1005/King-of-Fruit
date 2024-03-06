@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://kit.fontawesome.com/03dcdfffe5.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	
   </head>
  <body>
 
@@ -78,10 +79,10 @@
               
       %>
       	  <div class="top-link pe-2">
-            <a href="View/login.jsp" class="text-white"
+            <a href="loginPage" class="text-white"
               ><small class="text-white mx-2">Sign In</small>/</a
             >
-            <a href="View/register.jsp" class="text-white"
+            <a href="RegisterPage" class="text-white"
               ><small class="text-white ms-2">Sign Up</small></a
             >
           </div>

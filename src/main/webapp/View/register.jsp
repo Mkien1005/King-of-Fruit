@@ -15,8 +15,8 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="../public/css1/style.css">
-<link rel="icon" type="image/x-icon" href="../public/img/icon.png">
+<link rel="stylesheet" href="public/css1/style.css">
+<link rel="icon" type="image/x-icon" href="public/img/icon.png">
 <style>
 .form-group.invalid .form-control {
 	border-color: yellow;
@@ -31,8 +31,8 @@
 </head>
 <body>
 <div class="img js-fullheight"
-	style="background-image: url(../public/img/bg.jpg); overflow-y: hidden">
-	<form id="form-1" action="../Register" method="post">
+	style="background-image: url(public/img/bg.jpg); overflow-y: hidden">
+	<form id="form-1" action="Register" method="post">
 		<section class="ftco-section">
 			<div class="container">
 				<div class="row justify-content-center"></div>
@@ -97,11 +97,11 @@
 		</section>
 	</form>
 	</div>
-	<script src="../public/js/validator.js"></script>
-	<script src="../public/js/jquery.min.js"></script>
-	<script src="../public/js/popper.js"></script>
-	<script src="../public/js/bootstrap.min.js"></script>
-	<script src="../public/js/main1.js"></script>
+	<script src="public/js/validator.js"></script>
+	<script src="public/js/jquery.min.js"></script>
+	<script src="public/js/popper.js"></script>
+	<script src="public/js/bootstrap.min.js"></script>
+	<script src="public/js/main1.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </body>
 </html>

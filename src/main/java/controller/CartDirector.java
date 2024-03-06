@@ -68,6 +68,8 @@ public class CartDirector extends HttpServlet {
 	                ProductWithQuantity productWithQuantity = new ProductWithQuantity(product, quantity);
 	                productWithQuantityList.add(productWithQuantity);
 	            }
+	            List<String> name_product_List = dao.GetProduct.getAllNameProduct();
+                request.setAttribute("name_product_List", name_product_List);
 	            request.setAttribute("productWithQuantityList", productWithQuantityList);
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("/View/cart.jsp");
 	            dispatcher.forward(request, response);
@@ -76,7 +78,7 @@ public class CartDirector extends HttpServlet {
 	        }
 	    }else {
 	    	
-	    	response.sendRedirect("View/login.jsp");
+	    	response.sendRedirect("loginPage");
 	    }
 	    
 	}

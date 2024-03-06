@@ -18,16 +18,17 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../public/css1/style.css">
-<link rel="icon" type="image/x-icon" href="../public/img/icon.png">
+<link rel="stylesheet" href="public/css1/style.css">
+<link rel="icon" type="image/x-icon" href="public/img/icon.png">
 </head>
 <body>
 <div class="img js-fullheight"
-	style="background-image: url(../public/img/bg.jpg);
+	style="background-image: url(public/img/bg.jpg);
 	background-size: cover;
     background-position: center;
     height: 100%;
     overflow: hidden;">
+    <a href="indexForward"><button><i class="fa-solid fa-arrow-left"></i>Back to home page</button></a>
 	<form method="post">
 		<section class="ftco-section">
 			<div class="container">
@@ -65,7 +66,7 @@
 								</div>
 							</form>
 							<p>Don't have an account?</p>
-							<a class="form-control btn btn-primary submit px-3" style="padding-top: 14px;" href="./register.jsp">Create a new account</a>
+							<a class="form-control btn btn-primary submit px-3" style="padding-top: 14px;" href="RegisterPage">Create a new account</a>
 						</div>
 					</div>
 				</div>
@@ -85,10 +86,10 @@
 		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 		crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/03dcdfffe5.js" crossorigin="anonymous"></script>
-	<script src="../public/js/jquery.min.js"></script>
-	<script src="../public/js/popper.js"></script>
-	<script src="../public/js/bootstrap.min.js"></script>
-	<script src="../public/js/main1.js"></script>
+	<script src="public/js/jquery.min.js"></script>
+	<script src="public/js/popper.js"></script>
+	<script src="public/js/bootstrap.min.js"></script>
+	<script src="public/js/main1.js"></script>
 	<script>
 		let btn = document.querySelector("#button-login");
 		console.log(btn)
@@ -100,8 +101,43 @@
 				alert("Username invalid!");
 				return
 			}
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "../controller/Login", true);
+			$.ajax({
+                url: "Login",
+                type: "POST",
+                data:{
+                	username: username,
+                	password: password
+                },
+                success: function(response) {
+					if (response == "success") {
+						//showBootstrapToast("Tên đăng nhập hoặc mật khẩu không đúng!");
+							Swal.fire({
+  								position: "mid-mid",
+  								icon: "success",
+  								title: "Log in success!",
+  								showConfirmButton: false,
+  								timer: 1500
+							});
+						// Đăng nhập thành công, ch	uyển hướng hoặc thực hiện hành động khác
+						setTimeout(function() {
+		                    window.location.href = "indexForward";
+		                }, 2000);					
+						} else {
+						// Đăng nhập không thành công, hiển thị thông báo lỗi
+						//showBootstrapToast("Tên đăng nhập hoặc mật khẩu không đúng!");
+							Swal.fire({
+								  icon: "error",
+								  title: "Wrong...",
+								  text: "Username or password is wrong!"
+								});
+					}
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+			/* var xhr = new XMLHttpRequest();
+			xhr.open("POST", "Login", true);
 			xhr.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
 			xhr.onreadystatechange = function() {
@@ -118,7 +154,7 @@
 							});
 						// Đăng nhập thành công, ch	uyển hướng hoặc thực hiện hành động khác
 						setTimeout(function() {
-		                    window.location.href = "../indexForward";
+		                    window.location.href = "indexForward";
 		                }, 2000);					
 						} else {
 						// Đăng nhập không thành công, hiển thị thông báo lỗi
@@ -132,7 +168,7 @@
 				}
 			};
 			xhr.send("username=" + encodeURIComponent(username) + "&password="
-					+ encodeURIComponent(password));
+					+ encodeURIComponent(password)); */
 		})
 	</script>
 	

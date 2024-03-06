@@ -60,4 +60,26 @@ public class adminQuery {
 		}
 		return false;
 	}
+	public static boolean updateUser(int id, String fullname, String username, String address, String email, int phone) {
+		Connection con = db.dbConnection.createConnection();
+		String sql = "UPDATE `users` SET `username`=?,`fullName`=?,`email`=?,`phone`=?,`address`=? WHERE `id`=?";
+		
+		try {
+			PreparedStatement ptm = con.prepareStatement(sql);
+			ptm.setString(1, username);
+			ptm.setString(2, fullname);
+			ptm.setString(3, email);
+			ptm.setInt(4, phone);
+			ptm.setString(5, address);
+			ptm.setInt(6, id);
+			int effect = ptm.executeUpdate();
+			if(effect>0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

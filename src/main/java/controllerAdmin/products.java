@@ -26,6 +26,7 @@ public class products extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Products> products = dao.GetProduct.getAllProducts();
 		request.setAttribute("products", products);
+		request.setAttribute("info", "Products");
 		RequestDispatcher rd = request.getRequestDispatcher("/admin/product.jsp");
 		rd.forward(request, response);
 	}

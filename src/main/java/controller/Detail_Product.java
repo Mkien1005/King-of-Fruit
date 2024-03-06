@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +51,8 @@ public class Detail_Product extends HttpServlet {
                 String species = rs.getString("species");
                 Products product = new Products(productId, productName, productImage, description, cost, type,
                         species);
-
+                List<String> name_product_List = dao.GetProduct.getAllNameProduct();
+                request.setAttribute("name_product_List", name_product_List);
                 request.setAttribute("product", (Object) product);
                 RequestDispatcher rd = request.getRequestDispatcher("View/shop-detail.jsp");
                 rd.forward(request, response);
