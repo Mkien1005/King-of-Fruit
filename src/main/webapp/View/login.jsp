@@ -34,7 +34,7 @@
 			<div class="container">
 				<div class="row justify-content-center"></div>
 				<div class="row justify-content-center">
-					<div class="col-md-6 col-lg-4">
+					<div class="col-md-6 col-lg-4" style="background-color: rgba(59, 212, 3, 0.8); opacity: 0.9; border-radius: 16px; padding-bottom: 10px;">
 						<div class="login-wrap p-0">
 							<h3 class="mb-4 text-center">Have an account?</h3>
 							<form action="#" class="signin-form">

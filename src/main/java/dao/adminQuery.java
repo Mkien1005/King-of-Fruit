@@ -82,4 +82,27 @@ public class adminQuery {
 		}
 		return false;
 	}
+	public static boolean addProduct(String name, String desc, String price,String type,String spieces,String stock, String fileName) {
+		Connection con = db.dbConnection.createConnection();
+		String sql = "INSERT INTO `productions` (`name_prod`, `img_prod`, `cost`, `description`, `type`, `species`, `quantity_bought`, `quantity_stock`) VALUES (?, ?, ?, ?, ?, ?, 0, ?)";
+		try {
+			PreparedStatement ptm = con.prepareStatement(sql);
+			ptm.setString(1, name);
+			ptm.setString(2, fileName);
+			ptm.setString(3, price);
+			ptm.setString(4, desc);
+			ptm.setString(5, type);
+			ptm.setString(6, spieces);
+			ptm.setString(7, stock);
+			int effect = ptm.executeUpdate();
+			if(effect>0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("SQL Error: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

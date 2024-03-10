@@ -26,7 +26,7 @@ public class AddToCartController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("id_user") == null) {
-            response.sendRedirect("View/login.jsp");
+            response.sendRedirect("loginPage");
             return;
         }
         int id_user = (int) session.getAttribute("id_user");

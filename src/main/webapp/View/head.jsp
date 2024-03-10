@@ -267,7 +267,14 @@
 		    }
 		});
 	});
-	
+	let btn_search = document.querySelector(".btn-search")
+	btn_search.addEventListener("click",()=>{
+		let input = document.querySelector('#searchInput').value;
+		if(input != ""){
+			pro = '?keyword='+encodeURIComponent(input)
+			window.location.href = "shopDirector"+pro
+		}
+	})
 </script>
 
 

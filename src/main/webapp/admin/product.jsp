@@ -6,7 +6,7 @@
             <div class="bg-secondary text-center rounded p-4">
               <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">All Product</h6>
-                <button type="button" class="btn btn-success m-2">Add new product</button>
+                <button type="button" class="btn btn-success m-2" id="addProductButton">Add new product</button>
               </div>
               <div class="table-responsive">
                 <table
@@ -58,13 +58,37 @@
               </div>
             </div>
           </div>
-          <!-- Recent Sales End -->
-        </div>
-        <!-- Content End -->
-      </div>
-  
-    </div>
-
+<div id="overlay" class="overlay">
+	<div class="overlay-content">
+		<span class="close-button">&times;</span>
+		<h2>Add new product</h2>
+		<form id="productForm" class="flex-form" enctype="multipart/form-data">
+			<div class="column">
+				<label for="name">Product name:</label> <input type="text"
+					id="inputName" name="name" required /><br />
+				<br /> <label for="desc">Description:</label>
+				<textarea id="proDesc" name="desc" required></textarea>
+				<br /> <br /> <label for="productPrice">Cost:</label> <input
+					type="number" id="productPrice" name="productPrice" required min="1"/><br />
+				<label for="proType">Type:</label> <input type="text"
+					id="proType" name="proType" required /><br />
+			</div>
+			<div class="column">
+				<label for="proSpecies">Product species:</label> <input
+					type="text" id="proSpecies" name="proSpecies" required /><br />
+				<label for="proStock">Quantity in stock:</label> <input
+					type="number" id="proStock" name="proStock" required min="1"/><br />
+				<br /> <label for="productImage">Product Image:</label> <input onchange="changeInputImg(event)"
+					type="file" id="fileInput" name="productImage" accept="image/*"
+					required /><input hidden="true" id="imageName"/><br /> <br /> <img id="imagePreview"
+					src="https://th.bing.com/th?id=OIP.d5rVSrO1bKlTpP0XmUzBCwHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+					alt="" />
+				<button class="addProduct btn btn-success m-2">Thêm</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- Content End -->
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -73,7 +97,6 @@
     <script src="admin/lib/waypoints/waypoints.min.js"></script>
     <script src="admin/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="admin/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- Template Javascript -->
