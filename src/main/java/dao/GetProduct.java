@@ -17,7 +17,7 @@ public class GetProduct {
 	public static List<Products> getAllProducts(){
 		List<Products> productList = new ArrayList<>();
 		connection = db.dbConnection.createConnection();
-		String sql = "SELECT * FROM productions";
+		String sql = "SELECT * FROM productions ORDER BY id DESC";
         try {
 			preparedStatement = connection.prepareStatement(sql);
 			rs = preparedStatement.executeQuery(sql);

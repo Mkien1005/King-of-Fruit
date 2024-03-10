@@ -62,7 +62,7 @@
 	<div class="overlay-content">
 		<span class="close-button">&times;</span>
 		<h2>Add new product</h2>
-		<form id="productForm" class="flex-form" enctype="multipart/form-data">
+		<form id="productForm" class="flex-form">
 			<div class="column">
 				<label for="name">Product name:</label> <input type="text"
 					id="inputName" name="name" required /><br />
@@ -89,6 +89,25 @@
 	</div>
 </div>
 <!-- Content End -->
+<script>
+	var msg = <%= request.getAttribute("msg")%>
+	if(msg){
+		if(msg == "success"){
+			Swal.fire({
+				  position: "center",
+				  icon: "success",
+				  title: "Success!",
+				  text: "Add Product Success"
+				});
+		}else if(msg == "failure"){
+			Swal.fire({
+				  icon: "error",
+				  title: "Oops...",
+				  text: "Add Product Failed!",
+				});
+		}
+	}
+</script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

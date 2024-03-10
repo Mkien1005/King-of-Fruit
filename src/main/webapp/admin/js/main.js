@@ -264,7 +264,8 @@ function changeInputImg(event) {
     }
 }
 let btn_add= document.querySelector(".addProduct")
-btn_add.addEventListener("click",()=>{
+btn_add.addEventListener("click",(event)=>{
+	event.preventDefault();
 	let name = document.querySelector("#inputName").value;
     let productDescription = document.querySelector("#proDesc").value;
     let productPrice = document.querySelector("#productPrice").value;
@@ -276,9 +277,9 @@ btn_add.addEventListener("click",()=>{
     data.append("name", name);
     data.append("desc", productDescription);
     data.append("productPrice", productPrice);
-    data.append("productType", productType);
-    data.append("productSpecies", productSpecies);
-    data.append("productStock", productStock);
+    data.append("proType", productType);
+    data.append("proSpecies", productSpecies);
+    data.append("proStock", productStock);
     data.append("proImg", proImg);
     var imageName = document.getElementById("imageName").value;
     // Kiểm tra xem đã chọn ảnh chưa
@@ -288,17 +289,7 @@ btn_add.addEventListener("click",()=>{
     }
     // Thêm tên ảnh vào FormData
     data.append("imageName", imageName);
-	let formData={
-		name: data.get("name"),
-		desc: data.get("desc"),
-		price: data.get("productPrice"),
-		type: data.get("productType"),
-		species: data.get("productSpecies"),
-		stock: data.get("productStock"),
-		img: data.get("proImg"),
-		imgName: data.get("imageName"),
-	}
-	console.log(formData)
+	console.log(data)
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "addProduct", true);
     
@@ -306,25 +297,25 @@ btn_add.addEventListener("click",()=>{
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Xử lý phản hồi từ máy chủ
+                console.log(xhr.responseText)
                 if(xhr.responseText == "success"){
 					Swal.fire({
 						  position: "center",
 						  icon: "success",
 						  title: "Success!",
 						  text: "Add Product Success"
-						});
-					setTimeout(function() {
-						window.location.href= "products"
-					}, 2000);
+						}).then((result) => {
+						  	if (result.isConfirmed) {
+								let overlay = document.getElementById("overlay");
+								overlay.style.display = "none"
+							}
+						  })
 				}else{
 					Swal.fire({
 						  icon: "error",
 						  title: "Oops...",
 						  text: "Add Product Failed!",
 						});
-					setTimeout(function() {
-						window.location.href= "products"
-					}, 2000);
 				}
             } else {
                 // Xử lý lỗi
@@ -333,5 +324,5 @@ btn_add.addEventListener("click",()=>{
         }
     };
     
-    xhr.send(formData);
+    xhr.send(data);
 })

@@ -2,7 +2,10 @@ package controllerAdmin;
 
 import java.io.*;
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 @WebServlet("/addProduct")
+@MultipartConfig
 public class addProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,18 +28,17 @@ public class addProduct extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Đường dẫn tới thư mục lưu trữ ảnh trong source code
-        String uploadPath = getServletContext().getRealPath("") + File.separator + "public/img" + File.separator;
+		String UPLOAD_DIRECTORY = "/public/img";
+
+	        // Đường dẫn tuyệt đối của thư mục lưu trữ file trên máy chủ
+	    String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+
         String productName = request.getParameter("name");
-        if(productName==null) {
-        	response.getWriter().println("fail");
-        	return;
-        }
         String productDescription = request.getParameter("desc");
-        String productPrice = request.getParameter("price");
-        String productType = request.getParameter("type");
-        String productSpecies = request.getParameter("species");
-        String productStock = request.getParameter("stock");
-        String img = request.getParameter("imgName");
+        String productPrice = request.getParameter("productPrice");
+        String productType = request.getParameter("proType");
+        String productSpecies = request.getParameter("proSpecies");
+        String productStock = request.getParameter("proStock");
         // Tạo thư mục nếu chưa tồn tại
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
@@ -50,21 +53,26 @@ public class addProduct extends HttpServlet {
             // Ghi file vào thư mục image
             OutputStream out = new FileOutputStream(new File(uploadPath + File.separator + fileName));
             InputStream fileContent = filePart.getInputStream();
-            int read;
-            final byte[] bytes = new byte[1024];
+            int read = 0;
+            byte[] bytes = new byte[1024];
             while ((read = fileContent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
             }
             out.close();
+            fileContent.close();
             boolean check = dao.adminQuery.addProduct(productName, productDescription, productPrice, productType, productSpecies, productStock, fileName);
             if(check) {
-            	response.setContentType("application/text");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write("success");
+            	response.setContentType("text/plain");
+            	response.setCharacterEncoding("UTF-8");
+            	response.setHeader("Content-Disposition", "inline"); // Hoặc "attachment; filename=result.txt" nếu bạn muốn tải file xuống
+            	response.getWriter().write("success");
+
             }else {
-            	response.setContentType("application/text");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write("failure");
+            	response.setContentType("text/plain");
+            	response.setCharacterEncoding("UTF-8");
+            	response.setHeader("Content-Disposition", "inline"); // Hoặc "attachment; filename=result.txt" nếu bạn muốn tải file xuống
+            	response.getWriter().write("failure");
+
             }
             // Gửi phản hồi về client
         } catch (FileNotFoundException e) {
