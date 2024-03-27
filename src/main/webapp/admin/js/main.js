@@ -40,14 +40,6 @@
         });
     }, {offset: '80%'});
 
-
-    // Calender
-    $('#calender').datetimepicker({
-        inline: true,
-        format: 'L'
-    });
-
-
     // Testimonials carousel
     $(".testimonial-carousel").owlCarousel({
         autoplay: true,
@@ -85,24 +77,25 @@ function editProduct(button, id) {
 	    for (var i = 0; i < cells.length - 1; i++) {
 	        var cell = cells[i];
 	        var spans = cell.getElementsByTagName('span');
-
 	        // Kiểm tra nếu có ít nhất một phần tử <span> trong ô cell
 	        if (spans.length > 0) {
 	            var span = spans[0];
-	            var value = span.innerText;
-
-	            var input = document.createElement('input');
-	            input.type = 'text';
-	            input.value = value;
-				input.id = span.id
-	            // Lấy chiều rộng của thẻ cha
-	            var parentWidth = span.offsetWidth;
-
-	            // Đặt độ rộng của input bằng chiều rộng của thẻ cha
-	            input.style.width = parentWidth + 'px';
-
-	            span.innerHTML = '';
-	            span.appendChild(input);
+				if(span.id !="quantityBought"){
+		            var value = span.innerText;
+	
+		            var input = document.createElement('input');
+		            input.type = 'text';
+		            input.value = value;
+					input.id = span.id
+		            // Lấy chiều rộng của thẻ cha
+		            var parentWidth = span.offsetWidth;
+	
+		            // Đặt độ rộng của input bằng chiều rộng của thẻ cha
+		            input.style.width = parentWidth + 'px';
+	
+		            span.innerHTML = '';
+		            span.appendChild(input);
+				}
 	        }
 	    }
 	}
@@ -143,12 +136,14 @@ function cancelEdit(row, cells, idP) {
 
         if (spans.length > 0) {
             var span = spans[0];
-            var value = span.getElementsByTagName('input')[0].value;
-            var input = span.getElementsByTagName('input')[0]
-            span.innerHTML = value;
-            if (input) {
-                newData[input.id] = value;
-            }
+            if(span.id !="quantityBought"){
+	            var value = span.getElementsByTagName('input')[0].value;
+	            var input = span.getElementsByTagName('input')[0]
+	            span.innerHTML = value;
+	            if (input) {
+	                newData[input.id] = value;
+	            }	
+			}
         }
     }
     if(isNaN(newData["productCost"])){
@@ -156,14 +151,6 @@ function cancelEdit(row, cells, idP) {
 			  icon: "error",
 			  title: "Oops...",
 			  text: "Cost field must be number!",
-			});
-    	return;
-    }
-    if(isNaN(newData["quantityBought"])){
-    	Swal.fire({
-			  icon: "error",
-			  title: "Oops...",
-			  text: "Quantity bought field must be number!",
 			});
     	return;
     }
@@ -229,15 +216,17 @@ function deleteRow(productId) {
 		}
 	});
 }
-document
-  .getElementById("addProductButton")
-  .addEventListener("click", function () {
+let open_overlay_btn = document.getElementById("addProductButton")
+if(open_overlay_btn){
+	  open_overlay_btn.addEventListener("click", function () {
     document.getElementById("overlay").style.display = "block";
   });
 
 document.querySelector(".close-button").addEventListener("click", function () {
   document.getElementById("overlay").style.display = "none";
 });
+
+}
 
 
   
@@ -264,6 +253,7 @@ function changeInputImg(event) {
     }
 }
 let btn_add= document.querySelector(".addProduct")
+if(btn_add){
 btn_add.addEventListener("click",(event)=>{
 	event.preventDefault();
 	let name = document.querySelector("#inputName").value;
@@ -309,6 +299,124 @@ btn_add.addEventListener("click",(event)=>{
 								let overlay = document.getElementById("overlay");
 								overlay.style.display = "none"
 							}
+							var newRow = document.createElement('tr');
+							// Thêm các ô dữ liệu vào hàng mới
+							var cell1 = document.createElement('td');
+							var cell2 = document.createElement('td');
+							var cell3 = document.createElement('td');
+							var cell4 = document.createElement('td');
+							var cell5 = document.createElement('td');
+							var cell6 = document.createElement('td');
+							var cell7 = document.createElement('td');
+							var cell8 = document.createElement('td');
+							var cell9 = document.createElement('td');
+							var cell10 = document.createElement('td');
+					//Tạo cell 1
+							// Tạo một thẻ div mới
+							var divElement = document.createElement('div');
+							divElement.className = 'd-flex align-items-center';
+
+							// Tạo thẻ img và thiết lập thuộc tính
+							var imgElement = document.createElement('img');
+							imgElement.src = 'public/img/' + imageName;
+							imgElement.className = 'img-fluid me-5 rounded-circle';
+							imgElement.style.width = '80px';
+							imgElement.style.height = '80px';
+							// Thêm thẻ img vào thẻ div
+							divElement.appendChild(imgElement);	
+							cell1.appendChild(divElement);
+					//Kết thúc tạo cell 1
+					
+					//Tạo cell 2
+							var spanElement2 = document.createElement('span');
+							spanElement2.className = 'value';
+							spanElement2.id = 'productName';
+							spanElement2.textContent = data.get("name");
+							cell2.appendChild(spanElement2);	
+					//Kết thúc tạo cell 2
+					//Tạo cell 3
+							var spanElement3 = document.createElement('span');
+							spanElement3.className = 'value';
+							spanElement3.id = 'productCost';
+							spanElement3.textContent = data.get("productPrice");
+							cell3.appendChild(spanElement3);
+					//Kết thúc tạo cell 3
+					//Tạo cell 4
+							var spanElement4 = document.createElement('span');
+							spanElement4.className = 'value';
+							spanElement4.id = 'productDescription';
+							spanElement4.textContent = data.get("desc");
+							cell4.appendChild(spanElement4);	
+					//Kết thúc tạo cell 4
+					//Tạo cell 5
+							var spanElement5 = document.createElement('span');
+							spanElement5.className = 'value';
+							spanElement5.id = 'productType';
+							spanElement5.textContent = productType;
+							cell5.appendChild(spanElement5);
+					//Kết thúc tạo cell 5
+					//Tạo cell 6
+							var spanElement6 = document.createElement('span');
+							spanElement6.className = 'value';
+							spanElement6.id = 'productSpecies';
+							spanElement6.textContent = productSpecies;
+							cell6.appendChild(spanElement6);
+					//Kết thúc tạo cell 6
+					//Tạo cell 7
+							var spanElement7 = document.createElement('span');
+							spanElement7.className = 'value';
+							spanElement7.id = 'quantityBought';
+							spanElement7.textContent = '0';
+							cell7.appendChild(spanElement7);		
+					//Kết thúc tạo cell 7
+					//Tạo cell 8
+							var spanElement8 = document.createElement('span');
+							spanElement8.className = 'value';
+							spanElement8.id = 'quantityStock';
+							spanElement8.textContent = productStock;
+							cell8.appendChild(spanElement8);		
+					//Kết thúc tạo cell 8
+					//Tạo cell 9
+							// Tạo nút button 1
+							var editButton = document.createElement('button');
+							editButton.type = 'button';
+							editButton.className = 'btn btn-info rounded-pill';
+							var editIcon = document.createElement('i');
+							editIcon.className = 'fa-regular fa-pen-to-square'; // Class của icon sửa sản phẩm
+							editButton.appendChild(editIcon);
+							
+							// Tạo nút button 2
+							var deleteButton = document.createElement('button');
+							deleteButton.type = 'button';
+							deleteButton.className = 'btn btn-danger rounded-pill';
+							var deleteIcon = document.createElement('i');
+							deleteIcon.className = 'fa fa-times'; // Class của icon xóa sản phẩm
+							deleteButton.appendChild(deleteIcon);
+							// Thêm nút button vào trong thẻ td
+							cell9.appendChild(editButton);
+							cell9.appendChild(deleteButton);
+					//Kết thúc tạo cell 9
+					//Tạo cell 10
+							var inputc1 = document.createElement("input")
+							inputc1.setAttribute("type","checkbox");
+							inputc1.className = "form-check-input";
+							cell10.appendChild(inputc1)
+					//Kết thúc tạo cell 10
+					//Thêm cell vào row
+							newRow.appendChild(cell10);
+							newRow.appendChild(cell1);
+							newRow.appendChild(cell2);
+							newRow.appendChild(cell3);
+							newRow.appendChild(cell4);
+							newRow.appendChild(cell5);
+							newRow.appendChild(cell6);
+							newRow.appendChild(cell7);
+							newRow.appendChild(cell8);
+							newRow.appendChild(cell9);
+		
+							// Chèn hàng mới vào đầu của phần tbody của bảng
+							var tbody = document.getElementById('tb-product');
+							tbody.insertBefore(newRow, tbody.firstChild);
 						  })
 				}else{
 					Swal.fire({
@@ -326,3 +434,4 @@ btn_add.addEventListener("click",(event)=>{
     
     xhr.send(data);
 })
+}

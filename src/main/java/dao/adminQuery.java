@@ -36,9 +36,9 @@ public class adminQuery {
 		}
 		return num;
 	}
-	public static boolean updateProduct(int id, String name, String cost, String desc, String type, String species, int bought, String stock) {
+	public static boolean updateProduct(int id, String name, String cost, String desc, String type, String species, String stock) {
 		Connection con = db.dbConnection.createConnection();
-		String sql = "UPDATE `productions` SET `name_prod`=?,`cost`=?,`description`=?,`type`=?,`species`=?,`quantity_bought`=?,`quantity_stock`=? WHERE `id`=?";
+		String sql = "UPDATE `productions` SET `name_prod`=?,`cost`=?,`description`=?,`type`=?,`species`=?,`quantity_stock`=? WHERE `id`=?";
 		
 		try {
 			PreparedStatement ptm = con.prepareStatement(sql);
@@ -47,9 +47,8 @@ public class adminQuery {
 			ptm.setString(3, desc);
 			ptm.setString(4, type);
 			ptm.setString(5, species);
-			ptm.setInt(6, bought);
-			ptm.setString(7, stock);
-			ptm.setInt(8, id);
+			ptm.setString(6, stock);
+			ptm.setInt(7, id);
 			int effect = ptm.executeUpdate();
 			if(effect>0) {
 				return true;
@@ -105,4 +104,41 @@ public class adminQuery {
 		}
 		return false;
 	}
+	public static boolean removeProduct(int productID) {
+		Connection con = db.dbConnection.createConnection();
+		String sql = "DELETE FROM productions WHERE id = ?";
+		PreparedStatement statement;
+		try {
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, productID);
+			// Thực thi truy vấn
+			int rowsDeleted = statement.executeUpdate();
+			if (rowsDeleted > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public static boolean removeUser(int userID) {
+		Connection con = db.dbConnection.createConnection();
+		String sql = "DELETE FROM users WHERE id = ?";
+		PreparedStatement statement;
+		try {
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, userID);
+			// Thực thi truy vấn
+			int rowsDeleted = statement.executeUpdate();
+			if (rowsDeleted > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }

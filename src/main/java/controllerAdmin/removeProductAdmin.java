@@ -24,30 +24,18 @@ public class removeProductAdmin extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		int productId = Integer.parseInt(request.getParameter("productId"));
-		Connection con = null;
-		con = db.dbConnection.createConnection();
-		try {
-			String sql = "DELETE FROM productions WHERE id = ?";
-			PreparedStatement statement = con.prepareStatement(sql);
-			statement.setInt(1, productId);
-
-			// Thực thi truy vấn
-			int rowsDeleted = statement.executeUpdate();
-			if (rowsDeleted > 0) {
-				// Xóa thành công dữ liệu từ bảng cart
-				response.setContentType("text/plain");
-				response.getWriter().write("Product with ID " + productId + " removed successfully.");
-			} else {
-				// Không có dữ liệu nào được xóa
-				response.getWriter().write("No data found for deletion.");
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean check = dao.adminQuery.removeProduct(productId);
+		if(check) {
+			// Xóa thành công dữ liệu từ bảng cart
+			response.setContentType("text/plain");
+			response.getWriter().write("Product with ID " + productId + " removed successfully.");
+		} else {
+			// Không có dữ liệu nào được xóa
+			response.getWriter().write("No data found for deletion.");
 		}
+
 	}
 
 }

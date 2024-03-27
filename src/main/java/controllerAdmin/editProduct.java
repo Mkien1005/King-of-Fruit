@@ -44,22 +44,11 @@ public class editProduct extends HttpServlet {
         String desc = jsonObject.getString("productDescription");
         String type = jsonObject.getString("productType");
         String species = jsonObject.getString("productSpecies");
-        int bought = Integer.parseInt(jsonObject.getString("quantityBought"));
         String stock = jsonObject.getString("quantityStock");
         int id = jsonObject.getInt("id");
-		/*
-		 * int id = Integer.parseInt(request.getParameter("id")); String productName =
-		 * request.getParameter("productName"); String productCost =
-		 * request.getParameter("productCost"); String desc =
-		 * request.getParameter("productDescription"); String type =
-		 * request.getParameter("productType"); String species =
-		 * request.getParameter("productSpecies"); int bought =
-		 * Integer.parseInt(request.getParameter("quantityBought")); String stock =
-		 * request.getParameter("quantityStock"); // Lấy các thông tin khác nếu cần
-		 */        
         // Xử lý dữ liệu, thường là lưu vào cơ sở dữ liệu hoặc thực hiện các thao tác khác
         // Ví dụ: Lưu vào cơ sở dữ liệu
-        boolean success = dao.adminQuery.updateProduct(id, productName, productCost, desc, type, species, bought, stock);
+        boolean success = dao.adminQuery.updateProduct(id, productName, productCost, desc, type, species, stock);
 
         // Chuẩn bị phản hồi cho máy khách
         if (success) {

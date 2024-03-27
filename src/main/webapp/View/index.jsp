@@ -801,27 +801,6 @@
 		</div>
 	</div>
 </div>
-<!-- <script>
-    function addToCart(productId) {
-        // Tạo một đối tượng XMLHttpRequest
-        var xhr = new XMLHttpRequest();
-
-        // Cấu hình yêu cầu (method, url, true là cho yêu cầu bất đồng bộ)
-        xhr.open("POST", "AddToCartController", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        // Xử lý sự kiện khi yêu cầu hoàn tất
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Xử lý phản hồi từ Servlet (nếu cần)
-                console.log(xhr.responseText);
-            }
-        };
-
-        // Gửi yêu cầu với dữ liệu là id sản phẩm
-        xhr.send("idproduct=" + productId);
-    }
-</script> -->
 <script src="public/js/addCartOverLay.js"></script>
 <!-- Tastimonial End -->
 <%@ include file="end.html"%>

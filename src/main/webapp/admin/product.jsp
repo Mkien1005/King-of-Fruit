@@ -28,7 +28,7 @@
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tb-product">
                   
                     <%
                     List<Products> products = (List<Products>) request.getAttribute("products");
@@ -115,9 +115,6 @@
     <script src="admin/lib/easing/easing.min.js"></script>
     <script src="admin/lib/waypoints/waypoints.min.js"></script>
     <script src="admin/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="admin/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="admin/js/main.js"></script>
   </body>

@@ -15,29 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 public class removeUserAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int idUser = Integer.parseInt(request.getParameter("idUser"));
-		Connection con = null;
-		con = db.dbConnection.createConnection();
-		try {
-			String sql = "DELETE FROM users WHERE id = ?";
-			PreparedStatement statement = con.prepareStatement(sql);
-			statement.setInt(1, idUser);
-
-			// Thực thi truy vấn
-			int rowsDeleted = statement.executeUpdate();
-			if (rowsDeleted > 0) {
-				// Xóa thành công dữ liệu từ bảng cart
-				response.setContentType("text/plain");
-				response.getWriter().write("User with ID " + idUser + " removed successfully.");
-			} else {
-				// Không có dữ liệu nào được xóa
-				response.getWriter().write("No data found for deletion.");
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean check = dao.adminQuery.removeUser(idUser);
+		if (check) {
+			// Xóa thành công dữ liệu từ bảng cart
+			response.setContentType("text/plain");
+			response.getWriter().write("User with ID " + idUser + " removed successfully.");
+		} else {
+			// Không có dữ liệu nào được xóa
+			response.getWriter().write("No data found for deletion.");
 		}
 	}
 
